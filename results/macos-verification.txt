@@ -1,0 +1,599 @@
+PLATFORM macOS arm64 native; clean archive extraction
+Darwin 27.0.0 arm64
+Apple clang version 21.0.0 (clang-2100.3.34.2)
+Target: arm64-apple-darwin27.0.0
+Thread model: posix
+InstalledDir: /Applications/Xcode-27.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+Python 3.14.7
+
+COMMAND make clean
+rm -f test_pool test_pool_fault test_pool_debug test_pool_asan test_pool_ubsan bench_pool pool_fault.o util_pool util_pool.o slow_check mt_check slow_check.o mt_check.o test_mm test_mm_fault test_mm_asan test_mm_ubsan test_mm_tsan bench_mm memory_mm mm_pool_fault.o mm_fault.o test_mm_recent test_mm_recent_asan test_mm_recent_ubsan
+rm -f -r .mut *.dSYM __pycache__
+rm -rf codegen
+TARGET_EXIT clean=0
+
+COMMAND make verify
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 test_pool.c pool.c -o test_pool
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -include test_alloc.h -Dmalloc=q2_test_malloc -Dfree=q2_test_free -c pool.c -o pool_fault.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 test_pool.c test_alloc.c pool_fault.o -o test_pool_fault
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -DPOOL_DEBUG test_pool.c pool.c -o test_pool_debug
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956110
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956110
+allocator shim: live blocks=0 forced failures=1
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956094
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -pthread test_mm.c mymalloc.c pool.c -o test_mm
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -include mm_test_alloc.h -Dmalloc=mm_test_malloc -Dfree=mm_test_free -c pool.c -o mm_pool_fault.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -include mm_test_alloc.h -Dmalloc=mm_test_malloc -Dfree=mm_test_free -c mymalloc.c -o mm_fault.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -pthread -DMM_SHIM test_mm.c mm_test_alloc.c mm_pool_fault.o mm_fault.o -o test_mm_fault
+PASS differential: 1000000 steps; mm_check every step; seed=0x51a7c0de
+PASS 4 threads: one instance per thread; 1000000 steps each; seeds=0x12345678..0x1234567b
+PASS fallback enabled: capacity-one exhaustion stays NULL, reuse succeeds, above-largest uses system
+PASS mm public API: configuration, boundaries, canaries, exhaustion, free, fallback, wrappers, contains
+PASS differential: 1000000 steps; mm_check every step; seed=0x51a7c0de
+PASS fallback enabled: capacity-one exhaustion stays NULL, reuse succeeds, above-largest uses system
+PASS mm public API: configuration, boundaries, canaries, exhaustion, free, fallback, wrappers, contains
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 test_mm_recent.c mymalloc.c pool.c -o test_mm_recent
+PASS extra public API: 1..40001 class rule; 81 hint/owner orders; 324 range boundary probes
+PASS extra public API: 1..40001 class rule; 81 hint/owner orders; 324 range boundary probes
+PASS extra public API: 1..40001 class rule; 81 hint/owner orders; 324 range boundary probes
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -g -O1 -fno-omit-frame-pointer -fsanitize=address test_pool.c pool.c -o test_pool_asan
+==83122==WARNING: AddressSanitizer failed to allocate 0x8000000000000008 bytes
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956110
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -g -O1 -fno-omit-frame-pointer -fsanitize=undefined -fno-sanitize-recover=all test_pool.c pool.c -o test_pool_ubsan
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956110
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -g -O1 -fno-omit-frame-pointer -pthread -fsanitize=address test_mm.c mymalloc.c pool.c -o test_mm_asan
+PASS differential: 1000000 steps; mm_check every step; seed=0x51a7c0de
+PASS 4 threads: one instance per thread; 1000000 steps each; seeds=0x12345678..0x1234567b
+PASS fallback enabled: capacity-one exhaustion stays NULL, reuse succeeds, above-largest uses system
+PASS mm public API: configuration, boundaries, canaries, exhaustion, free, fallback, wrappers, contains
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -g -O1 -fno-omit-frame-pointer -pthread -fsanitize=undefined -fno-sanitize-recover=all test_mm.c mymalloc.c pool.c -o test_mm_ubsan
+PASS differential: 1000000 steps; mm_check every step; seed=0x51a7c0de
+PASS 4 threads: one instance per thread; 1000000 steps each; seeds=0x12345678..0x1234567b
+PASS fallback enabled: capacity-one exhaustion stays NULL, reuse succeeds, above-largest uses system
+PASS mm public API: configuration, boundaries, canaries, exhaustion, free, fallback, wrappers, contains
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -c slow_check.c -o slow_check.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 slow_check.o pool.c -o slow_check
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -pthread -c mt_check.c -o mt_check.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -pthread mt_check.o pool.c -o mt_check
+mkdir -p codegen
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -S slow_check.c -o codegen/slow_check.s
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -pthread -S mt_check.c -o codegen/mt_check.s
+python3 check_experiments.py --codegen
+CODEGEN: PASS (see codegen/check-codegen.txt)
+python3 check_experiments.py --smoke
+EXPERIMENT CHECKS: PASS (smoke only, not performance evidence)
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 bench.c pool.c -o bench_pool
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -pthread bench_mm.c trace_mm.c mymalloc.c pool.c -o bench_mm
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -include test_alloc.h -Dmalloc=q2_test_malloc -Dfree=q2_test_free -c pool.c -o util_pool.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 util.c util_pool.o -o util_pool
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -include mm_test_alloc.h -Dmalloc=mm_test_malloc -Dfree=mm_test_free -c pool.c -o mm_pool_fault.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 -include mm_test_alloc.h -Dmalloc=mm_test_malloc -Dfree=mm_test_free -c mymalloc.c -o mm_fault.o
+cc -std=c99 -pedantic -Wall -Wextra -Werror -O2 memory_mm.c mm_test_alloc.c mm_pool_fault.o mm_fault.o -o memory_mm
+./bench_pool --smoke
+MALLOC_ALIGN16 ok
+CONFIG smoke=1 reps=1 pairs_per_cell=1000 cache_line=128 align=16 mixed_target_bytes=1048576 base_seed=0xbadc0ffe
+NOTE hot_best_case is hot LIFO; reuse_not_allocator does NOT preserve independent live objects.
+NOTE batch ns/op includes touches/bookkeeping; individual tails are uncorrected for timer/dispatch overhead.
+NOTE p99 tails include timer/scheduling noise; no CPU affinity is set by this helper.
+CLOCK resolution_ns=1000 observed_min_positive_ns=1000 zero_deltas=94771 probes=100000
+TIMER_HEADER,rep,samples,p50_ns,p99_ns,p999_ns,max_ns
+TIMER,1,1000,0,1000,1000,9000
+COLD_HEADER,size,slots,payload_bytes,create_ns,first_alloc_touch_ns
+COLD,40000,27,1080000,28000,277000
+RAW_HEADER,size,pattern,method,rep,seed,pairs,live_payload_bytes,batch_ns,ns_per_op,mops_s,alloc_p50_ns,alloc_p99_ns,alloc_p999_ns,alloc_max_ns,free_p50_ns,free_p99_ns,free_p999_ns,free_max_ns
+RAW,40000,hot_best_case,malloc,1,0xbadc0ffe,1000,40000,584000,292.000000,3.424658,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,hot_best_case,pool,1,0xbadc0ffe,1000,40000,267000,133.500000,7.490637,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,hot_best_case,reuse_not_allocator,1,0xbadc0ffe,1000,40000,220000,110.000000,9.090909,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,batch1000_random_free,malloc,1,0xbadc0ffe,1000,40000000,4605000,2302.500000,0.434311,0,1000,8000,11000,0,1000,3000,4000
+RAW,40000,batch1000_random_free,pool,1,0xbadc0ffe,1000,40000000,8384000,4192.000000,0.238550,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,batch1000_random_free,reuse_not_allocator,1,0xbadc0ffe,1000,40000000,142000,71.000000,14.084507,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,mixed_large_live,malloc,1,0xbadc0ffe,1000,1080000,357000,178.500000,5.602241,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,mixed_large_live,pool,1,0xbadc0ffe,1000,1080000,299000,149.500000,6.688963,0,1000,1000,1000,0,1000,1000,1000
+RAW,40000,mixed_large_live,reuse_not_allocator,1,0xbadc0ffe,1000,1080000,136000,68.000000,14.705882,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,hot_best_case,malloc,1,0xbadc0ffe,1000,16,21000,10.500000,95.238095,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,hot_best_case,pool,1,0xbadc0ffe,1000,16,8000,4.000000,250.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,hot_best_case,reuse_not_allocator,1,0xbadc0ffe,1000,16,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,batch1000_random_free,malloc,1,0xbadc0ffe,1000,16000,20000,10.000000,100.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,batch1000_random_free,pool,1,0xbadc0ffe,1000,16000,5000,2.500000,400.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,batch1000_random_free,reuse_not_allocator,1,0xbadc0ffe,1000,16000,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,mixed_large_live,malloc,1,0xbadc0ffe,1000,1048576,18000,9.000000,111.111111,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,mixed_large_live,pool,1,0xbadc0ffe,1000,1048576,6000,3.000000,333.333333,0,1000,1000,1000,0,1000,1000,1000
+RAW,16,mixed_large_live,reuse_not_allocator,1,0xbadc0ffe,1000,1048576,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,64,hot_best_case,malloc,1,0xbadc0ffe,1000,64,21000,10.500000,95.238095,0,1000,1000,1000,0,1000,1000,1000
+RAW,64,hot_best_case,pool,1,0xbadc0ffe,1000,64,8000,4.000000,250.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,64,hot_best_case,reuse_not_allocator,1,0xbadc0ffe,1000,64,1000,0.500000,2000.000000,0,1000,1000,1000,0,1000,1000,6000
+RAW,64,batch1000_random_free,malloc,1,0xbadc0ffe,1000,64000,20000,10.000000,100.000000,0,1000,2000,2000,0,1000,1000,1000
+RAW,64,batch1000_random_free,pool,1,0xbadc0ffe,1000,64000,4000,2.000000,500.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,64,batch1000_random_free,reuse_not_allocator,1,0xbadc0ffe,1000,64000,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,64,mixed_large_live,malloc,1,0xbadc0ffe,1000,1048576,23000,11.500000,86.956522,0,1000,1000,1000,0,1000,1000,1000
+RAW,64,mixed_large_live,pool,1,0xbadc0ffe,1000,1048576,5000,2.500000,400.000000,0,1000,1000,1000,0,0,1000,1000
+RAW,64,mixed_large_live,reuse_not_allocator,1,0xbadc0ffe,1000,1048576,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,hot_best_case,malloc,1,0xbadc0ffe,1000,256,20000,10.000000,100.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,hot_best_case,pool,1,0xbadc0ffe,1000,256,6000,3.000000,333.333333,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,hot_best_case,reuse_not_allocator,1,0xbadc0ffe,1000,256,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,batch1000_random_free,malloc,1,0xbadc0ffe,1000,256000,21000,10.500000,95.238095,0,1000,1000,4000,0,1000,1000,1000
+RAW,256,batch1000_random_free,pool,1,0xbadc0ffe,1000,256000,6000,3.000000,333.333333,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,batch1000_random_free,reuse_not_allocator,1,0xbadc0ffe,1000,256000,3000,1.500000,666.666667,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,mixed_large_live,malloc,1,0xbadc0ffe,1000,1048576,29000,14.500000,68.965517,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,mixed_large_live,pool,1,0xbadc0ffe,1000,1048576,6000,3.000000,333.333333,0,1000,1000,1000,0,1000,1000,1000
+RAW,256,mixed_large_live,reuse_not_allocator,1,0xbadc0ffe,1000,1048576,2000,1.000000,1000.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,hot_best_case,malloc,1,0xbadc0ffe,1000,4096,31000,15.500000,64.516129,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,hot_best_case,pool,1,0xbadc0ffe,1000,4096,15000,7.500000,133.333333,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,hot_best_case,reuse_not_allocator,1,0xbadc0ffe,1000,4096,12000,6.000000,166.666667,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,batch1000_random_free,malloc,1,0xbadc0ffe,1000,4096000,56000,28.000000,35.714286,0,2000,7000,16000,0,1000,1000,1000
+RAW,4096,batch1000_random_free,pool,1,0xbadc0ffe,1000,4096000,33000,16.500000,60.606061,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,batch1000_random_free,reuse_not_allocator,1,0xbadc0ffe,1000,4096000,13000,6.500000,153.846154,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,mixed_large_live,malloc,1,0xbadc0ffe,1000,1048576,50000,25.000000,40.000000,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,mixed_large_live,pool,1,0xbadc0ffe,1000,1048576,28000,14.000000,71.428571,0,1000,1000,1000,0,1000,1000,1000
+RAW,4096,mixed_large_live,reuse_not_allocator,1,0xbadc0ffe,1000,1048576,12000,6.000000,166.666667,0,1000,1000,1000,0,1000,1000,1000
+SINK=88451496
+BENCH: PASS
+./bench_mm --smoke
+MACHINE os=Darwin arch=arm64 logical_cpus=10 performance_cpus=4 efficiency_cpus=6
+CLOCK name=mach_absolute_time tick_ns=41.666666667 granularity_ns=41.666666667
+CONFIG synthetic trace, not a real workload; reps=1 warmup=1 pairs=1000 rounds=1 live=128 live_bytes=715568 seed=0x70ace123 threads=unpinned
+TOUCH volatile byte store per 64 bytes and final byte; setup outside timing; MT ns_pair=mean worker ns/pair, not throughput.
+RANGE 16,64,256,4096,40000 only; deliberate maximum, no fallback benchmark.
+TRACE class=16 peak=15 percentile=100
+TRACE class=32 peak=14 percentile=100
+TRACE class=64 peak=16 percentile=100
+TRACE class=128 peak=21 percentile=100
+TRACE class=256 peak=6 percentile=100
+TRACE class=512 peak=16 percentile=100
+TRACE class=1024 peak=12 percentile=100
+TRACE class=4096 peak=12 percentile=100
+TRACE class=40000 peak=16 percentile=100
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=93.208333
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=26.375000
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=27.625000
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=17.375000
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=26.541667
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=27.625000
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=17.833333
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=91.916667
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=94.791667
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=27.291667
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=28.125000
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=14.000000
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=19.958333
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=20.875000
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=13.875000
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=69.083333
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=58.458333
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=29.208333
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=29.791667
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=12.625000
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=29.541667
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=29.833333
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=12.625000
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=60.500000
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=62.166667
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=28.750000
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=28.916667
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=13.958333
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=29.000000
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=29.208333
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=13.666667
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=62.208333
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=73.833333
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=36.916667
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=37.958333
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=13.041667
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=36.666667
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=37.958333
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=12.625000
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=73.916667
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=78.250000
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=38.666667
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=42.041667
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=13.916667
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=37.333333
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=32.833333
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=11.041667
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=62.000000
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=55.333333
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=36.041667
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=36.041667
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=10.291667
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=36.125000
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=36.041667
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=10.083333
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=55.500000
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=98.416667
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=83.875000
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=86.291667
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=51.083333
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=83.916667
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=83.875000
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=51.041667
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=98.333333
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=244.166667
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=34.291667
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=34.041667
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=10.041667
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=34.250000
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=34.291667
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=10.083333
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=209.083333
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=549.291667
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=336.125000
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=350.583333
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=341.458333
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=295.625000
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=299.666667
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=278.708333
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=480.291667
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=97.005208
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=38.736979
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=33.528646
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=83.658854
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=208.984375
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=145.833333
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=143.229167
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=191.406250
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=37.916667 slowest_ns=37.916667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=17.750000 slowest_ns=17.750000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=18.041667 slowest_ns=18.041667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=32.708333 slowest_ns=32.708333 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=32.291667 slowest_ns=32.291667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=16.333333 slowest_ns=16.333333 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=15.750000 slowest_ns=15.750000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=31.916667 slowest_ns=31.916667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=160.750000 slowest_ns=160.750000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=22.000000 slowest_ns=22.000000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=22.375000 slowest_ns=22.375000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=160.041667 slowest_ns=160.041667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=411.750000 slowest_ns=411.750000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=267.958333 slowest_ns=267.958333 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=267.666667 slowest_ns=267.666667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=621.041667 slowest_ns=621.041667 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=138.346354 slowest_ns=138.346354 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=73.893229 slowest_ns=73.893229 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=60.221354 slowest_ns=60.221354 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=108.072917 slowest_ns=108.072917 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=265.950521 slowest_ns=265.950521 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=237.955729 slowest_ns=237.955729 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=211.263021 slowest_ns=211.263021 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=317.382812 slowest_ns=317.382812 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=171.854167 slowest_ns=175.208333 ready=2 start_spread_ns=1750.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=0 phase=warmup ns_pair=19.812500 slowest_ns=20.250000 ready=2 start_spread_ns=2916.666667
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=1 phase=measured ns_pair=33.145833 slowest_ns=35.750000 ready=2 start_spread_ns=1625.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=1 phase=measured ns_pair=168.104167 slowest_ns=172.666667 ready=2 start_spread_ns=1666.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=183.520833 slowest_ns=187.083333 ready=2 start_spread_ns=1333.333333
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=0 phase=warmup ns_pair=20.750000 slowest_ns=22.166667 ready=2 start_spread_ns=2166.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=1 phase=measured ns_pair=23.312500 slowest_ns=26.791667 ready=2 start_spread_ns=416.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=1 phase=measured ns_pair=154.979167 slowest_ns=157.333333 ready=2 start_spread_ns=833.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=2402.291667 slowest_ns=2403.208333 ready=2 start_spread_ns=791.666667
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=0 phase=warmup ns_pair=35.916667 slowest_ns=37.875000 ready=2 start_spread_ns=791.666667
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=1 phase=measured ns_pair=34.395833 slowest_ns=35.125000 ready=2 start_spread_ns=1791.666667
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=1 phase=measured ns_pair=1939.812500 slowest_ns=1940.666667 ready=2 start_spread_ns=875.000000
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=1560.750000 slowest_ns=1563.875000 ready=2 start_spread_ns=625.000000
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=0 phase=warmup ns_pair=352.979167 slowest_ns=354.375000 ready=2 start_spread_ns=1291.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=1 phase=measured ns_pair=351.979167 slowest_ns=354.083333 ready=2 start_spread_ns=2208.333333
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=1 phase=measured ns_pair=1514.312500 slowest_ns=1515.208333 ready=2 start_spread_ns=666.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=203.776042 slowest_ns=213.216146 ready=2 start_spread_ns=1291.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=0 phase=warmup ns_pair=43.945312 slowest_ns=52.734375 ready=2 start_spread_ns=833.333333
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=1 phase=measured ns_pair=22.786458 slowest_ns=23.111979 ready=2 start_spread_ns=3166.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=1 phase=measured ns_pair=211.914062 slowest_ns=213.541667 ready=2 start_spread_ns=791.666667
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=366.210938 slowest_ns=370.117188 ready=2 start_spread_ns=1541.666667
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=0 phase=warmup ns_pair=141.601562 slowest_ns=152.994792 ready=2 start_spread_ns=1708.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=1 phase=measured ns_pair=133.789062 slowest_ns=140.299479 ready=2 start_spread_ns=1833.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=1 phase=measured ns_pair=263.183594 slowest_ns=268.554688 ready=2 start_spread_ns=1708.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=214.812500 slowest_ns=270.958333 ready=4 start_spread_ns=25083.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=0 phase=warmup ns_pair=13.708333 slowest_ns=14.625000 ready=4 start_spread_ns=2458.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=1 phase=measured ns_pair=16.135417 slowest_ns=18.500000 ready=4 start_spread_ns=3833.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=1 phase=measured ns_pair=123.906250 slowest_ns=172.875000 ready=4 start_spread_ns=2958.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=205.458333 slowest_ns=233.625000 ready=4 start_spread_ns=2916.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=0 phase=warmup ns_pair=12.031250 slowest_ns=12.375000 ready=4 start_spread_ns=21208.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=1 phase=measured ns_pair=11.760417 slowest_ns=12.666667 ready=4 start_spread_ns=2541.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=1 phase=measured ns_pair=164.510417 slowest_ns=218.708333 ready=4 start_spread_ns=3000.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=2981.822917 slowest_ns=3070.000000 ready=4 start_spread_ns=24375.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=0 phase=warmup ns_pair=23.041667 slowest_ns=24.208333 ready=4 start_spread_ns=17375.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=1 phase=measured ns_pair=24.666667 slowest_ns=25.791667 ready=4 start_spread_ns=3291.666667
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=1 phase=measured ns_pair=2771.510417 slowest_ns=2805.708333 ready=4 start_spread_ns=24958.333333
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=2728.093750 slowest_ns=2755.500000 ready=4 start_spread_ns=21958.333333
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=0 phase=warmup ns_pair=223.614583 slowest_ns=224.583333 ready=4 start_spread_ns=24041.666667
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=1 phase=measured ns_pair=225.281250 slowest_ns=226.208333 ready=4 start_spread_ns=1958.333333
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=1 phase=measured ns_pair=2413.354167 slowest_ns=2451.583333 ready=4 start_spread_ns=3333.333333
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=189.371745 slowest_ns=235.351562 ready=4 start_spread_ns=21250.000000
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=0 phase=warmup ns_pair=18.636068 slowest_ns=23.111979 ready=4 start_spread_ns=10208.333333
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=1 phase=measured ns_pair=15.706380 slowest_ns=16.601562 ready=4 start_spread_ns=3916.666667
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=1 phase=measured ns_pair=223.551432 slowest_ns=258.789062 ready=4 start_spread_ns=12083.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=524.414062 slowest_ns=572.916667 ready=4 start_spread_ns=3208.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=0 phase=warmup ns_pair=90.006510 slowest_ns=95.377604 ready=4 start_spread_ns=2208.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=1 phase=measured ns_pair=90.006510 slowest_ns=92.773438 ready=4 start_spread_ns=9375.000000
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=1 phase=measured ns_pair=306.070964 slowest_ns=333.658854 ready=4 start_spread_ns=3125.000000
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=128.651042 slowest_ns=207.666667 ready=8 start_spread_ns=9250.000000
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=0 phase=warmup ns_pair=19.572917 slowest_ns=31.500000 ready=8 start_spread_ns=8166.666667
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=1 phase=measured ns_pair=14.671875 slowest_ns=22.791667 ready=8 start_spread_ns=11250.000000
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=1 phase=measured ns_pair=146.385417 slowest_ns=196.791667 ready=8 start_spread_ns=12083.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=142.802083 slowest_ns=195.416667 ready=8 start_spread_ns=11750.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=0 phase=warmup ns_pair=17.911458 slowest_ns=27.208333 ready=8 start_spread_ns=8083.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=1 phase=measured ns_pair=17.192708 slowest_ns=24.166667 ready=8 start_spread_ns=12083.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=1 phase=measured ns_pair=136.213542 slowest_ns=193.833333 ready=8 start_spread_ns=16041.666667
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=7191.458333 slowest_ns=7608.583333 ready=8 start_spread_ns=11250.000000
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=0 phase=warmup ns_pair=35.197917 slowest_ns=53.875000 ready=8 start_spread_ns=6125.000000
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=1 phase=measured ns_pair=29.911458 slowest_ns=52.750000 ready=8 start_spread_ns=6291.666667
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=1 phase=measured ns_pair=6923.375000 slowest_ns=7351.250000 ready=8 start_spread_ns=10041.666667
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=7009.656250 slowest_ns=7454.583333 ready=8 start_spread_ns=9166.666667
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=0 phase=warmup ns_pair=238.218750 slowest_ns=290.500000 ready=8 start_spread_ns=10500.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=1 phase=measured ns_pair=252.093750 slowest_ns=288.375000 ready=8 start_spread_ns=9958.333333
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=1 phase=measured ns_pair=7546.979167 slowest_ns=7924.041667 ready=8 start_spread_ns=19208.333333
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=728.068034 slowest_ns=856.119792 ready=8 start_spread_ns=12041.666667
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=0 phase=warmup ns_pair=16.316732 slowest_ns=17.903646 ready=8 start_spread_ns=25750.000000
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=1 phase=measured ns_pair=53.873698 slowest_ns=123.046875 ready=8 start_spread_ns=10958.333333
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=1 phase=measured ns_pair=854.695638 slowest_ns=1014.322917 ready=8 start_spread_ns=6208.333333
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=706.339518 slowest_ns=921.223958 ready=8 start_spread_ns=13416.666667
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=0 phase=warmup ns_pair=215.861003 slowest_ns=334.309896 ready=8 start_spread_ns=11000.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=1 phase=measured ns_pair=175.903320 slowest_ns=283.854167 ready=8 start_spread_ns=9291.666667
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=1 phase=measured ns_pair=638.834635 slowest_ns=761.067708 ready=8 start_spread_ns=34541.666667
+./util_pool
+POOL: total is measured backing-allocator requested bytes, not malloc's physical footprint.
+POOL: 10% live retains all preallocated storage (preallocation cost).
+POOL_ALLOC_HEADER,slot_size,requested_bytes
+POOL_HEADER,slot_size,nslots,live_slots,stride,payload_bytes,total_requested_bytes,utilization_pct,bookkeeping_bytes_per_slot
+POOL_ALLOC,16,80
+POOL_ALLOC,16,4000
+POOL_ALLOC,16,1000
+POOL_ALLOC,16,16016
+POOL,16,1000,1000,16,16000,21096,75.843762,5.096
+POOL,16,1000,100,16,1600,21096,7.584376,5.096
+POOL_ALLOC,64,80
+POOL_ALLOC,64,4000
+POOL_ALLOC,64,1000
+POOL_ALLOC,64,64016
+POOL,64,1000,1000,64,64000,69096,92.624754,5.096
+POOL,64,1000,100,64,6400,69096,9.262475,5.096
+POOL_ALLOC,256,80
+POOL_ALLOC,256,4000
+POOL_ALLOC,256,1000
+POOL_ALLOC,256,256016
+POOL,256,1000,1000,256,256000,261096,98.048227,5.096
+POOL,256,1000,100,256,25600,261096,9.804823,5.096
+POOL_ALLOC,4096,80
+POOL_ALLOC,4096,4000
+POOL_ALLOC,4096,1000
+POOL_ALLOC,4096,4096016
+POOL,4096,1000,1000,4096,4096000,4101096,99.875741,5.096
+POOL,4096,1000,100,4096,409600,4101096,9.987574,5.096
+POOL_ALLOC,40000,80
+POOL_ALLOC,40000,4000
+POOL_ALLOC,40000,1000
+POOL_ALLOC,40000,40000016
+POOL,40000,1000,1000,40000,40000000,40005096,99.987262,5.096
+POOL,40000,1000,100,40000,4000000,40005096,9.998726,5.096
+MALLOC: ROUNDING ONLY; libmalloc headers/metadata are not visible through malloc_size.
+MALLOC: lower bound on overhead, NOT total utilization; cannot compare total utilization with pool.
+MALLOC_ROUNDING_ONLY_HEADER,request_bytes,usable_bytes,rounding_waste_pct
+MALLOC_ROUNDING_ONLY,16,16,0.000000
+MALLOC_ROUNDING_ONLY,64,64,0.000000
+MALLOC_ROUNDING_ONLY,256,256,0.000000
+MALLOC_ROUNDING_ONLY,4096,4096,0.000000
+MALLOC_ROUNDING_ONLY,40000,49152,18.619792
+UTIL: PASS
+./memory_mm
+MACHINE os=Darwin arch=arm64 logical_cpus=10 performance_cpus=4 efficiency_cpus=6
+CLOCK name=mach_absolute_time tick_ns=41.666666667 granularity_ns=41.666666667
+CREATE requested_bytes=11601552 calls=37 live_blocks=37 handle_and_metadata_included=1 rounding_and_RSS_excluded=1
+FRAGMENT request=17 class=32 waste_bytes=15 system_usable=32 lower_bound_only=1
+FRAGMENT request=33 class=64 waste_bytes=31 system_usable=48 lower_bound_only=1
+FRAGMENT request=65 class=128 waste_bytes=63 system_usable=80 lower_bound_only=1
+FRAGMENT request=129 class=256 waste_bytes=127 system_usable=160 lower_bound_only=1
+FRAGMENT request=4097 class=40000 waste_bytes=35903 system_usable=5120 lower_bound_only=1
+FRAGMENT request=39999 class=40000 waste_bytes=1 system_usable=49152 lower_bound_only=1
+DEFAULT class=16 capacity=65536 slot_bytes=1048576 metadata_index_state_bytes=327680
+DEFAULT class=32 capacity=32768 slot_bytes=1048576 metadata_index_state_bytes=163840
+DEFAULT class=64 capacity=16384 slot_bytes=1048576 metadata_index_state_bytes=81920
+DEFAULT class=128 capacity=8192 slot_bytes=1048576 metadata_index_state_bytes=40960
+DEFAULT class=256 capacity=4096 slot_bytes=1048576 metadata_index_state_bytes=20480
+DEFAULT class=512 capacity=2048 slot_bytes=1048576 metadata_index_state_bytes=10240
+DEFAULT class=1024 capacity=1024 slot_bytes=1048576 metadata_index_state_bytes=5120
+DEFAULT class=4096 capacity=256 slot_bytes=1048576 metadata_index_state_bytes=1280
+DEFAULT class=40000 capacity=64 slot_bytes=2560000 metadata_index_state_bytes=320
+COLD first_payload_touch_minor_faults=669 live_slots=130368 prefault=0 timing=not_measured
+DESTROY live_blocks=0 requested_bytes=0
+cc -std=c99 -pedantic -Wall -Wextra -Werror -fsyntax-only pool.c mymalloc.c
+TARGET_EXIT verify=0
+
+COMMAND make mutants
+double_free_check: KILLED
+slot_start_check: KILLED
+index_bound_check: KILLED
+base_alignment: KILLED
+exhaustion_off_by_one: KILLED
+free_state_reset: KILLED
+power_of_two_check: KILLED
+mutant	result
+double_free_check	KILLED
+slot_start_check	KILLED
+index_bound_check	KILLED
+base_alignment	KILLED
+exhaustion_off_by_one	KILLED
+free_state_reset	KILLED
+power_of_two_check	KILLED
+KILLED 7/7
+mm_boundary: KILLED
+contains_upper: KILLED
+contains_lower: KILLED
+mm_fallthrough: KILLED
+mm_foreign: KILLED
+mm_null: KILLED
+mm_fallback: KILLED
+mm_alignment: KILLED
+mm_exhaustion_uses_system: KILLED
+mutant	result
+mm_boundary	KILLED
+contains_upper	KILLED
+contains_lower	KILLED
+mm_fallthrough	KILLED
+mm_foreign	KILLED
+mm_null	KILLED
+mm_fallback	KILLED
+mm_alignment	KILLED
+mm_exhaustion_uses_system	KILLED
+KILLED 9/9
+TARGET_EXIT mutants=0
+
+COMMAND make doctor
+Darwin arm64
+Apple clang version 21.0.0 (clang-2100.3.34.2)
+Target: arm64-apple-darwin27.0.0
+Thread model: posix
+InstalledDir: /Applications/Xcode-27.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+Python 3.14.7
+/usr/bin/make
+/usr/bin/objdump
+/usr/bin/leaks
+==83733==WARNING: AddressSanitizer failed to allocate 0x8000000000000008 bytes
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956110
+Can't examine target process's malloc zone asan_0x1064ea758, so memory analysis will be incomplete or incorrect.
+Reason: target process is using Address Sanitizer which doesn't work with memory analysis tools
+
+Process 83733 is not debuggable. Due to security restrictions, leaks can only show or save contents of readonly memory of restricted processes.
+
+leaks[83732]: [fatal] unable to inspect heap ranges of target process; it may be using a malloc replacement library without the required support
+Process:         test_pool_asan [83733]
+Path:            <relocated>/test_pool_asan
+Load Address:    0x1048b4000
+Identifier:      test_pool_asan
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  leaks [83732]
+Target Type:     live task
+
+Date/Time:       2026-10-27 12:03:13.521 +0800
+Launch Time:     2026-10-27 12:03:13.465 +0800
+OS Version:      macOS 27.0.1 (26A434)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+
+Physical footprint:         19.3M
+Physical footprint (peak):  19.3M
+Idle exit:                  untracked
+----
+
+leaks Report Version: 4.0
+leaks ASan exit=255
+PASS invalid_create
+PASS overflow_create
+PASS backing_failure
+PASS alignment_and_overlap
+PASS exhaustion_and_lifo
+PASS null_and_double_free
+PASS invalid_pointers
+PASS single_slot_and_destroy
+random seed=0x51a7c0de steps=1000000 slots=31
+oracle allocs=435021 frees=434995 exhausted=64814 remaining=26
+PASS random_differential
+TESTS: 9 passed, 0 failed; assertions=19956110
+Process 83747 is not debuggable. Due to security restrictions, leaks can only show or save contents of readonly memory of restricted processes.
+
+Process:         test_pool [83747]
+Path:            <relocated>/test_pool
+Load Address:    0x102df4000
+Identifier:      test_pool
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  leaks [83746]
+Target Type:     live task
+
+Date/Time:       2026-10-27 12:03:17.807 +0800
+Launch Time:     2026-10-27 12:03:17.777 +0800
+OS Version:      macOS 27.0.1 (26A434)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+
+Physical footprint:         2832K
+Physical footprint (peak):  2832K
+Idle exit:                  untracked
+----
+
+leaks Report Version: 4.0, multi-line stacks
+Process 83747: 189 nodes malloced for 15 KB
+Process 83747: 0 leaks for 0 total leaked bytes.
+
+leaks native exit=0
+TSan: separate optional target make tsan-mm; not a doctor PASS
+Valgrind: not run; Linux uses LeakSanitizer in this target
+TARGET_EXIT doctor=0
+
+COMMAND make tsan-mm (optional; not included in required-target PASS)
+$ cc -std=c99 -pedantic -Wall -Wextra -Werror -O1 -g -pthread -fsanitize=thread test_mm.c mymalloc.c pool.c -o test_mm_tsan
+compile_exit=0
+$ ./test_mm_tsan
+PASS differential: 1000000 steps; mm_check every step; seed=0x51a7c0de
+PASS 4 threads: one instance per thread; 1000000 steps each; seeds=0x12345678..0x1234567b
+PASS fallback enabled: capacity-one exhaustion stays NULL, reuse succeeds, above-largest uses system
+PASS mm public API: configuration, boundaries, canaries, exhaustion, free, fallback, wrappers, contains
+run_exit=0
+TSan: clean for tested one-instance-per-thread workload; shared mm_t not tested
+TARGET_EXIT optional-tsan-mm=0
+REQUIRED_TARGETS_EXIT=0

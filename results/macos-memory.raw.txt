@@ -1,0 +1,67 @@
+PLATFORM macOS arm64; preserved requested-byte accounting; not an RSS or throughput measurement
+COMMAND make util
+POOL: total is measured backing-allocator requested bytes, not malloc's physical footprint.
+POOL: 10% live retains all preallocated storage (preallocation cost).
+POOL_ALLOC_HEADER,slot_size,requested_bytes
+POOL_HEADER,slot_size,nslots,live_slots,stride,payload_bytes,total_requested_bytes,utilization_pct,bookkeeping_bytes_per_slot
+POOL_ALLOC,16,80
+POOL_ALLOC,16,4000
+POOL_ALLOC,16,1000
+POOL_ALLOC,16,16016
+POOL,16,1000,1000,16,16000,21096,75.843762,5.096
+POOL,16,1000,100,16,1600,21096,7.584376,5.096
+POOL_ALLOC,64,80
+POOL_ALLOC,64,4000
+POOL_ALLOC,64,1000
+POOL_ALLOC,64,64016
+POOL,64,1000,1000,64,64000,69096,92.624754,5.096
+POOL,64,1000,100,64,6400,69096,9.262475,5.096
+POOL_ALLOC,256,80
+POOL_ALLOC,256,4000
+POOL_ALLOC,256,1000
+POOL_ALLOC,256,256016
+POOL,256,1000,1000,256,256000,261096,98.048227,5.096
+POOL,256,1000,100,256,25600,261096,9.804823,5.096
+POOL_ALLOC,4096,80
+POOL_ALLOC,4096,4000
+POOL_ALLOC,4096,1000
+POOL_ALLOC,4096,4096016
+POOL,4096,1000,1000,4096,4096000,4101096,99.875741,5.096
+POOL,4096,1000,100,4096,409600,4101096,9.987574,5.096
+POOL_ALLOC,40000,80
+POOL_ALLOC,40000,4000
+POOL_ALLOC,40000,1000
+POOL_ALLOC,40000,40000016
+POOL,40000,1000,1000,40000,40000000,40005096,99.987262,5.096
+POOL,40000,1000,100,40000,4000000,40005096,9.998726,5.096
+MALLOC: ROUNDING ONLY; libmalloc headers/metadata are not visible through malloc_size.
+MALLOC: lower bound on overhead, NOT total utilization; cannot compare total utilization with pool.
+MALLOC_ROUNDING_ONLY_HEADER,request_bytes,usable_bytes,rounding_waste_pct
+MALLOC_ROUNDING_ONLY,16,16,0.000000
+MALLOC_ROUNDING_ONLY,64,64,0.000000
+MALLOC_ROUNDING_ONLY,256,256,0.000000
+MALLOC_ROUNDING_ONLY,4096,4096,0.000000
+MALLOC_ROUNDING_ONLY,40000,49152,18.619792
+UTIL: PASS
+
+COMMAND make memory-mm
+MACHINE os=Darwin arch=arm64 logical_cpus=10 performance_cpus=4 efficiency_cpus=6
+CLOCK name=mach_absolute_time tick_ns=41.666666667 granularity_ns=41.666666667
+CREATE requested_bytes=11601552 calls=37 live_blocks=37 handle_and_metadata_included=1 rounding_and_RSS_excluded=1
+FRAGMENT request=17 class=32 waste_bytes=15 system_usable=32 lower_bound_only=1
+FRAGMENT request=33 class=64 waste_bytes=31 system_usable=48 lower_bound_only=1
+FRAGMENT request=65 class=128 waste_bytes=63 system_usable=80 lower_bound_only=1
+FRAGMENT request=129 class=256 waste_bytes=127 system_usable=160 lower_bound_only=1
+FRAGMENT request=4097 class=40000 waste_bytes=35903 system_usable=5120 lower_bound_only=1
+FRAGMENT request=39999 class=40000 waste_bytes=1 system_usable=49152 lower_bound_only=1
+DEFAULT class=16 capacity=65536 slot_bytes=1048576 metadata_index_state_bytes=327680
+DEFAULT class=32 capacity=32768 slot_bytes=1048576 metadata_index_state_bytes=163840
+DEFAULT class=64 capacity=16384 slot_bytes=1048576 metadata_index_state_bytes=81920
+DEFAULT class=128 capacity=8192 slot_bytes=1048576 metadata_index_state_bytes=40960
+DEFAULT class=256 capacity=4096 slot_bytes=1048576 metadata_index_state_bytes=20480
+DEFAULT class=512 capacity=2048 slot_bytes=1048576 metadata_index_state_bytes=10240
+DEFAULT class=1024 capacity=1024 slot_bytes=1048576 metadata_index_state_bytes=5120
+DEFAULT class=4096 capacity=256 slot_bytes=1048576 metadata_index_state_bytes=1280
+DEFAULT class=40000 capacity=64 slot_bytes=2560000 metadata_index_state_bytes=320
+COLD first_payload_touch_minor_faults=669 live_slots=130368 prefault=0 timing=not_measured
+DESTROY live_blocks=0 requested_bytes=0

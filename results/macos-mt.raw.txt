@@ -1,0 +1,122 @@
+CONFIG mode=full reps=5 warmup=1 pairs=1000000
+CLOCK name=mach_absolute_time tick_ns=41.666666667 granularity_ns=41.666666667
+MACHINE os=Darwin arch=arm64 logical_cpus=10 performance_cpus=4 efficiency_cpus=6
+Unpinned microbenchmark, one machine; threads not pinned: performance/efficiency core placement changes results.
+No payload touch; one private pool and stack-local volatile sink per thread; no sharing or cross-thread free.
+Start gate: all ready under mutex before go+broadcast; start_spread_ns measures scheduler skew, not guaranteed simultaneity.
+rep=0 warmup excluded; mean/slowest are per-thread ns/pair, not aggregate throughput.
+minor_faults=getrusage(RUSAGE_SELF) whole-rep delta including thread/pool setup and teardown.
+Only slowdown pattern measured; a lock inside libmalloc is a possible cause NOT proven here.
+Batch averages are not per-pair quantiles; individual p50 below one tick would be quantized.
+MT size=64 allocator=malloc threads=1 rep=0 phase=warmup mean_ns=7.230167 slowest_ns=7.230167 ready=1 start_spread_ns=0.000000 minor_faults=4 thread_ns=7.230167
+MT size=64 allocator=malloc threads=1 rep=1 phase=measured mean_ns=6.957292 slowest_ns=6.957292 ready=1 start_spread_ns=0.000000 minor_faults=4 thread_ns=6.957292
+MT size=64 allocator=malloc threads=1 rep=2 phase=measured mean_ns=6.976750 slowest_ns=6.976750 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=6.976750
+MT size=64 allocator=malloc threads=1 rep=3 phase=measured mean_ns=7.045083 slowest_ns=7.045083 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=7.045083
+MT size=64 allocator=malloc threads=1 rep=4 phase=measured mean_ns=7.168458 slowest_ns=7.168458 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=7.168458
+MT size=64 allocator=malloc threads=1 rep=5 phase=measured mean_ns=6.938667 slowest_ns=6.938667 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=6.938667
+MT_SUMMARY size=64 allocator=malloc threads=1 median_mean_ns=6.976750 median_slowest_ns=6.976750 worst_mean_ns=7.168458 worst_slowest_ns=7.168458
+MT size=64 allocator=malloc threads=2 rep=0 phase=warmup mean_ns=7.415625 slowest_ns=7.470083 ready=2 start_spread_ns=3041.666667 minor_faults=5 thread_ns=7.470083,7.361167
+MT size=64 allocator=malloc threads=2 rep=1 phase=measured mean_ns=7.467125 slowest_ns=7.502125 ready=2 start_spread_ns=1166.666667 minor_faults=4 thread_ns=7.502125,7.432125
+MT size=64 allocator=malloc threads=2 rep=2 phase=measured mean_ns=7.494792 slowest_ns=7.553042 ready=2 start_spread_ns=2833.333333 minor_faults=4 thread_ns=7.436542,7.553042
+MT size=64 allocator=malloc threads=2 rep=3 phase=measured mean_ns=7.402958 slowest_ns=7.475458 ready=2 start_spread_ns=666.666667 minor_faults=4 thread_ns=7.330458,7.475458
+MT size=64 allocator=malloc threads=2 rep=4 phase=measured mean_ns=7.464208 slowest_ns=7.511792 ready=2 start_spread_ns=333.333333 minor_faults=4 thread_ns=7.511792,7.416625
+MT size=64 allocator=malloc threads=2 rep=5 phase=measured mean_ns=7.398125 slowest_ns=7.456542 ready=2 start_spread_ns=625.000000 minor_faults=4 thread_ns=7.339708,7.456542
+MT_SUMMARY size=64 allocator=malloc threads=2 median_mean_ns=7.464208 median_slowest_ns=7.502125 worst_mean_ns=7.494792 worst_slowest_ns=7.553042
+MT size=64 allocator=malloc threads=4 rep=0 phase=warmup mean_ns=8.141948 slowest_ns=8.294542 ready=4 start_spread_ns=1958.333333 minor_faults=10 thread_ns=8.294542,8.186458,8.054208,8.032583
+MT size=64 allocator=malloc threads=4 rep=1 phase=measured mean_ns=8.962323 slowest_ns=9.101000 ready=4 start_spread_ns=26916.666667 minor_faults=8 thread_ns=9.101000,8.918417,8.915042,8.914833
+MT size=64 allocator=malloc threads=4 rep=2 phase=measured mean_ns=8.184010 slowest_ns=8.347208 ready=4 start_spread_ns=23083.333333 minor_faults=8 thread_ns=8.089500,8.347208,8.209417,8.089917
+MT size=64 allocator=malloc threads=4 rep=3 phase=measured mean_ns=8.372156 slowest_ns=8.621833 ready=4 start_spread_ns=13625.000000 minor_faults=8 thread_ns=8.305792,8.621833,8.269125,8.291875
+MT size=64 allocator=malloc threads=4 rep=4 phase=measured mean_ns=9.933969 slowest_ns=10.080958 ready=4 start_spread_ns=14458.333333 minor_faults=8 thread_ns=9.778167,9.917792,9.958958,10.080958
+MT size=64 allocator=malloc threads=4 rep=5 phase=measured mean_ns=10.222875 slowest_ns=10.356500 ready=4 start_spread_ns=1750.000000 minor_faults=8 thread_ns=10.214000,10.016500,10.356500,10.304500
+MT_SUMMARY size=64 allocator=malloc threads=4 median_mean_ns=8.962323 median_slowest_ns=9.101000 worst_mean_ns=10.222875 worst_slowest_ns=10.356500
+MT size=64 allocator=malloc threads=8 rep=0 phase=warmup mean_ns=11.589484 slowest_ns=14.848083 ready=8 start_spread_ns=11000.000000 minor_faults=21 thread_ns=8.904125,11.470750,8.512542,8.597792,13.081417,14.848083,13.845667,13.455500
+MT size=64 allocator=malloc threads=8 rep=1 phase=measured mean_ns=11.562000 slowest_ns=14.856375 ready=8 start_spread_ns=49125.000000 minor_faults=16 thread_ns=13.350167,11.474917,8.621458,8.463042,14.856375,8.833625,13.791958,13.104458
+MT size=64 allocator=malloc threads=8 rep=2 phase=measured mean_ns=11.847135 slowest_ns=14.202375 ready=8 start_spread_ns=9875.000000 minor_faults=16 thread_ns=8.644167,13.931000,13.252333,13.483250,14.202375,8.808833,8.943667,13.511458
+MT size=64 allocator=malloc threads=8 rep=3 phase=measured mean_ns=11.749917 slowest_ns=14.178500 ready=8 start_spread_ns=10583.333333 minor_faults=16 thread_ns=13.931708,13.353542,8.536500,13.085042,14.178500,8.625708,13.394417,8.893917
+MT size=64 allocator=malloc threads=8 rep=4 phase=measured mean_ns=11.734661 slowest_ns=15.192000 ready=8 start_spread_ns=20416.666667 minor_faults=16 thread_ns=8.561750,8.940750,11.525417,13.041125,8.624958,13.871875,15.192000,14.119417
+MT size=64 allocator=malloc threads=8 rep=5 phase=measured mean_ns=12.335729 slowest_ns=14.732792 ready=8 start_spread_ns=8083.333333 minor_faults=16 thread_ns=13.604500,14.732792,8.680042,14.054708,11.685042,13.945458,12.674667,9.308625
+MT_SUMMARY size=64 allocator=malloc threads=8 median_mean_ns=11.749917 median_slowest_ns=14.732792 worst_mean_ns=12.335729 worst_slowest_ns=15.192000
+MT size=64 allocator=pool threads=1 rep=0 phase=warmup mean_ns=5.057250 slowest_ns=5.057250 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=5.057250
+MT size=64 allocator=pool threads=1 rep=1 phase=measured mean_ns=5.039042 slowest_ns=5.039042 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=5.039042
+MT size=64 allocator=pool threads=1 rep=2 phase=measured mean_ns=4.693542 slowest_ns=4.693542 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=4.693542
+MT size=64 allocator=pool threads=1 rep=3 phase=measured mean_ns=4.649333 slowest_ns=4.649333 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=4.649333
+MT size=64 allocator=pool threads=1 rep=4 phase=measured mean_ns=5.080375 slowest_ns=5.080375 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=5.080375
+MT size=64 allocator=pool threads=1 rep=5 phase=measured mean_ns=5.037042 slowest_ns=5.037042 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=5.037042
+MT_SUMMARY size=64 allocator=pool threads=1 median_mean_ns=5.037042 median_slowest_ns=5.037042 worst_mean_ns=5.080375 worst_slowest_ns=5.080375
+MT size=64 allocator=pool threads=2 rep=0 phase=warmup mean_ns=4.840729 slowest_ns=4.857625 ready=2 start_spread_ns=333.333333 minor_faults=4 thread_ns=4.857625,4.823833
+MT size=64 allocator=pool threads=2 rep=1 phase=measured mean_ns=4.872667 slowest_ns=4.884167 ready=2 start_spread_ns=2500.000000 minor_faults=4 thread_ns=4.884167,4.861167
+MT size=64 allocator=pool threads=2 rep=2 phase=measured mean_ns=4.871208 slowest_ns=5.118125 ready=2 start_spread_ns=791.666667 minor_faults=6 thread_ns=5.118125,4.624292
+MT size=64 allocator=pool threads=2 rep=3 phase=measured mean_ns=4.637250 slowest_ns=4.677792 ready=2 start_spread_ns=1416.666667 minor_faults=4 thread_ns=4.596708,4.677792
+MT size=64 allocator=pool threads=2 rep=4 phase=measured mean_ns=4.661354 slowest_ns=4.685000 ready=2 start_spread_ns=1041.666667 minor_faults=4 thread_ns=4.685000,4.637708
+MT size=64 allocator=pool threads=2 rep=5 phase=measured mean_ns=4.769562 slowest_ns=4.955917 ready=2 start_spread_ns=1458.333333 minor_faults=4 thread_ns=4.583208,4.955917
+MT_SUMMARY size=64 allocator=pool threads=2 median_mean_ns=4.769562 median_slowest_ns=4.884167 worst_mean_ns=4.872667 worst_slowest_ns=5.118125
+MT size=64 allocator=pool threads=4 rep=0 phase=warmup mean_ns=7.218865 slowest_ns=7.910167 ready=4 start_spread_ns=21833.333333 minor_faults=8 thread_ns=6.210875,7.241042,7.910167,7.513375
+MT size=64 allocator=pool threads=4 rep=1 phase=measured mean_ns=6.571271 slowest_ns=7.728083 ready=4 start_spread_ns=24291.666667 minor_faults=9 thread_ns=6.275417,7.006250,7.728083,5.275333
+MT size=64 allocator=pool threads=4 rep=2 phase=measured mean_ns=6.964135 slowest_ns=8.777167 ready=4 start_spread_ns=26166.666667 minor_faults=8 thread_ns=6.335417,8.777167,7.860708,4.883250
+MT size=64 allocator=pool threads=4 rep=3 phase=measured mean_ns=6.948250 slowest_ns=8.774625 ready=4 start_spread_ns=2708.333333 minor_faults=8 thread_ns=6.567583,8.774625,7.566792,4.884000
+MT size=64 allocator=pool threads=4 rep=4 phase=measured mean_ns=7.073073 slowest_ns=9.222458 ready=4 start_spread_ns=3291.666667 minor_faults=8 thread_ns=6.428083,9.222458,7.761625,4.880125
+MT size=64 allocator=pool threads=4 rep=5 phase=measured mean_ns=7.077229 slowest_ns=9.203375 ready=4 start_spread_ns=1708.333333 minor_faults=8 thread_ns=6.450292,9.203375,7.771708,4.883542
+MT_SUMMARY size=64 allocator=pool threads=4 median_mean_ns=6.964135 median_slowest_ns=8.777167 worst_mean_ns=7.077229 worst_slowest_ns=9.222458
+MT size=64 allocator=pool threads=8 rep=0 phase=warmup mean_ns=10.770995 slowest_ns=14.009917 ready=8 start_spread_ns=8500.000000 minor_faults=16 thread_ns=6.381542,8.913458,9.355083,11.469500,11.710125,12.368458,14.009917,11.959875
+MT size=64 allocator=pool threads=8 rep=1 phase=measured mean_ns=11.761974 slowest_ns=14.796833 ready=8 start_spread_ns=8625.000000 minor_faults=16 thread_ns=13.559375,14.796833,12.438833,10.940875,5.226875,13.638458,13.767333,9.727208
+MT size=64 allocator=pool threads=8 rep=2 phase=measured mean_ns=9.824807 slowest_ns=13.725083 ready=8 start_spread_ns=7208.333333 minor_faults=17 thread_ns=6.582208,8.827875,8.351208,9.539292,12.237208,13.725083,7.469000,11.866583
+MT size=64 allocator=pool threads=8 rep=3 phase=measured mean_ns=12.156802 slowest_ns=16.144625 ready=8 start_spread_ns=6333.333333 minor_faults=16 thread_ns=7.468625,13.579458,16.144625,14.622208,15.104917,14.876667,5.470500,9.987417
+MT size=64 allocator=pool threads=8 rep=4 phase=measured mean_ns=11.959990 slowest_ns=15.621167 ready=8 start_spread_ns=5541.666667 minor_faults=16 thread_ns=10.377000,13.338667,12.670250,14.069833,15.621167,14.640750,5.486542,9.475708
+MT size=64 allocator=pool threads=8 rep=5 phase=measured mean_ns=12.527156 slowest_ns=15.848708 ready=8 start_spread_ns=9541.666667 minor_faults=16 thread_ns=7.347042,13.240750,15.129875,14.094958,15.848708,15.636167,13.515625,5.404125
+MT_SUMMARY size=64 allocator=pool threads=8 median_mean_ns=11.959990 median_slowest_ns=15.621167 worst_mean_ns=12.527156 worst_slowest_ns=16.144625
+MT size=40000 allocator=malloc threads=1 rep=0 phase=warmup mean_ns=64.397750 slowest_ns=64.397750 ready=1 start_spread_ns=0.000000 minor_faults=3 thread_ns=64.397750
+MT size=40000 allocator=malloc threads=1 rep=1 phase=measured mean_ns=64.510083 slowest_ns=64.510083 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=64.510083
+MT size=40000 allocator=malloc threads=1 rep=2 phase=measured mean_ns=63.459083 slowest_ns=63.459083 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=63.459083
+MT size=40000 allocator=malloc threads=1 rep=3 phase=measured mean_ns=64.367708 slowest_ns=64.367708 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=64.367708
+MT size=40000 allocator=malloc threads=1 rep=4 phase=measured mean_ns=63.713583 slowest_ns=63.713583 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=63.713583
+MT size=40000 allocator=malloc threads=1 rep=5 phase=measured mean_ns=63.797375 slowest_ns=63.797375 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=63.797375
+MT_SUMMARY size=40000 allocator=malloc threads=1 median_mean_ns=63.797375 median_slowest_ns=63.797375 worst_mean_ns=64.510083 worst_slowest_ns=64.510083
+MT size=40000 allocator=malloc threads=2 rep=0 phase=warmup mean_ns=888.790771 slowest_ns=888.874500 ready=2 start_spread_ns=2208.333333 minor_faults=4 thread_ns=888.874500,888.707042
+MT size=40000 allocator=malloc threads=2 rep=1 phase=measured mean_ns=904.405521 slowest_ns=904.462000 ready=2 start_spread_ns=1125.000000 minor_faults=4 thread_ns=904.349042,904.462000
+MT size=40000 allocator=malloc threads=2 rep=2 phase=measured mean_ns=884.186687 slowest_ns=885.387542 ready=2 start_spread_ns=1166.666667 minor_faults=4 thread_ns=882.985833,885.387542
+MT size=40000 allocator=malloc threads=2 rep=3 phase=measured mean_ns=892.104562 slowest_ns=892.332125 ready=2 start_spread_ns=1041.666667 minor_faults=4 thread_ns=891.877000,892.332125
+MT size=40000 allocator=malloc threads=2 rep=4 phase=measured mean_ns=841.779667 slowest_ns=845.943792 ready=2 start_spread_ns=458.333333 minor_faults=4 thread_ns=837.615542,845.943792
+MT size=40000 allocator=malloc threads=2 rep=5 phase=measured mean_ns=905.132562 slowest_ns=905.276208 ready=2 start_spread_ns=1125.000000 minor_faults=4 thread_ns=904.988917,905.276208
+MT_SUMMARY size=40000 allocator=malloc threads=2 median_mean_ns=892.104562 median_slowest_ns=892.332125 worst_mean_ns=905.132562 worst_slowest_ns=905.276208
+MT size=40000 allocator=malloc threads=4 rep=0 phase=warmup mean_ns=2149.710490 slowest_ns=2194.212917 ready=4 start_spread_ns=21666.666667 minor_faults=9 thread_ns=2188.558208,2130.705875,2194.212917,2085.364958
+MT size=40000 allocator=malloc threads=4 rep=1 phase=measured mean_ns=2184.606750 slowest_ns=2214.098500 ready=4 start_spread_ns=1791.666667 minor_faults=8 thread_ns=2210.022625,2169.017750,2145.288125,2214.098500
+MT size=40000 allocator=malloc threads=4 rep=2 phase=measured mean_ns=2143.413125 slowest_ns=2175.525875 ready=4 start_spread_ns=2583.333333 minor_faults=8 thread_ns=2169.709833,2175.525875,2104.395208,2124.021583
+MT size=40000 allocator=malloc threads=4 rep=3 phase=measured mean_ns=2068.244687 slowest_ns=2104.693125 ready=4 start_spread_ns=20375.000000 minor_faults=8 thread_ns=2007.564042,2072.148083,2088.573500,2104.693125
+MT size=40000 allocator=malloc threads=4 rep=4 phase=measured mean_ns=2125.813500 slowest_ns=2135.649375 ready=4 start_spread_ns=22583.333333 minor_faults=8 thread_ns=2123.684625,2135.649375,2120.099458,2123.820542
+MT size=40000 allocator=malloc threads=4 rep=5 phase=measured mean_ns=2153.564313 slowest_ns=2187.044667 ready=4 start_spread_ns=21291.666667 minor_faults=8 thread_ns=2131.001500,2187.044667,2181.859708,2114.351375
+MT_SUMMARY size=40000 allocator=malloc threads=4 median_mean_ns=2143.413125 median_slowest_ns=2175.525875 worst_mean_ns=2184.606750 worst_slowest_ns=2214.098500
+MT size=40000 allocator=malloc threads=8 rep=0 phase=warmup mean_ns=8347.367776 slowest_ns=8432.734250 ready=8 start_spread_ns=8541.666667 minor_faults=16 thread_ns=8432.734250,8421.564792,8395.349292,8147.107083,8422.665875,8111.357792,8415.721250,8432.441875
+MT size=40000 allocator=malloc threads=8 rep=1 phase=measured mean_ns=8354.430125 slowest_ns=8443.939333 ready=8 start_spread_ns=9500.000000 minor_faults=16 thread_ns=8441.651417,8436.387708,8344.417750,8427.858083,8212.084667,8443.939333,8085.323458,8443.778583
+MT size=40000 allocator=malloc threads=8 rep=2 phase=measured mean_ns=8502.785016 slowest_ns=8519.193792 ready=8 start_spread_ns=12541.666667 minor_faults=16 thread_ns=8460.753500,8502.568333,8519.193792,8510.264667,8500.299958,8512.746042,8518.994583,8497.459250
+MT size=40000 allocator=malloc threads=8 rep=3 phase=measured mean_ns=8496.964427 slowest_ns=8522.477000 ready=8 start_spread_ns=11041.666667 minor_faults=16 thread_ns=8518.825333,8513.479167,8522.477000,8520.476750,8413.729708,8522.451167,8492.337708,8471.938583
+MT size=40000 allocator=malloc threads=8 rep=4 phase=measured mean_ns=8480.721276 slowest_ns=8506.335250 ready=8 start_spread_ns=32208.333333 minor_faults=16 thread_ns=8456.115875,8505.658208,8462.069167,8497.391708,8448.630125,8491.367375,8506.335250,8478.202500
+MT size=40000 allocator=malloc threads=8 rep=5 phase=measured mean_ns=8375.615432 slowest_ns=8451.987208 ready=8 start_spread_ns=20666.666667 minor_faults=16 thread_ns=8411.073292,8416.793000,8451.987208,8438.179792,8450.471583,8407.703917,8451.649583,7977.065083
+MT_SUMMARY size=40000 allocator=malloc threads=8 median_mean_ns=8480.721276 median_slowest_ns=8506.335250 worst_mean_ns=8502.785016 worst_slowest_ns=8522.477000
+MT size=40000 allocator=pool threads=1 rep=0 phase=warmup mean_ns=5.082750 slowest_ns=5.082750 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=5.082750
+MT size=40000 allocator=pool threads=1 rep=1 phase=measured mean_ns=5.284542 slowest_ns=5.284542 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=5.284542
+MT size=40000 allocator=pool threads=1 rep=2 phase=measured mean_ns=4.534958 slowest_ns=4.534958 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=4.534958
+MT size=40000 allocator=pool threads=1 rep=3 phase=measured mean_ns=4.649333 slowest_ns=4.649333 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=4.649333
+MT size=40000 allocator=pool threads=1 rep=4 phase=measured mean_ns=4.536875 slowest_ns=4.536875 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=4.536875
+MT size=40000 allocator=pool threads=1 rep=5 phase=measured mean_ns=4.679250 slowest_ns=4.679250 ready=1 start_spread_ns=0.000000 minor_faults=2 thread_ns=4.679250
+MT_SUMMARY size=40000 allocator=pool threads=1 median_mean_ns=4.649333 median_slowest_ns=4.649333 worst_mean_ns=5.284542 worst_slowest_ns=5.284542
+MT size=40000 allocator=pool threads=2 rep=0 phase=warmup mean_ns=6.540333 slowest_ns=6.592958 ready=2 start_spread_ns=125.000000 minor_faults=4 thread_ns=6.592958,6.487708
+MT size=40000 allocator=pool threads=2 rep=1 phase=measured mean_ns=6.802917 slowest_ns=6.894750 ready=2 start_spread_ns=958.333333 minor_faults=4 thread_ns=6.711083,6.894750
+MT size=40000 allocator=pool threads=2 rep=2 phase=measured mean_ns=6.507958 slowest_ns=6.754875 ready=2 start_spread_ns=458.333333 minor_faults=4 thread_ns=6.261042,6.754875
+MT size=40000 allocator=pool threads=2 rep=3 phase=measured mean_ns=6.649625 slowest_ns=6.690083 ready=2 start_spread_ns=458.333333 minor_faults=4 thread_ns=6.690083,6.609167
+MT size=40000 allocator=pool threads=2 rep=4 phase=measured mean_ns=6.417854 slowest_ns=6.662958 ready=2 start_spread_ns=3666.666667 minor_faults=4 thread_ns=6.172750,6.662958
+MT size=40000 allocator=pool threads=2 rep=5 phase=measured mean_ns=6.824146 slowest_ns=6.886292 ready=2 start_spread_ns=458.333333 minor_faults=4 thread_ns=6.886292,6.762000
+MT_SUMMARY size=40000 allocator=pool threads=2 median_mean_ns=6.649625 median_slowest_ns=6.754875 worst_mean_ns=6.824146 worst_slowest_ns=6.894750
+MT size=40000 allocator=pool threads=4 rep=0 phase=warmup mean_ns=7.313021 slowest_ns=9.379708 ready=4 start_spread_ns=4458.333333 minor_faults=8 thread_ns=7.362708,9.379708,7.532625,4.977042
+MT size=40000 allocator=pool threads=4 rep=1 phase=measured mean_ns=7.320604 slowest_ns=9.407292 ready=4 start_spread_ns=20708.333333 minor_faults=8 thread_ns=7.393083,9.407292,7.514708,4.967333
+MT size=40000 allocator=pool threads=4 rep=2 phase=measured mean_ns=7.418625 slowest_ns=9.449958 ready=4 start_spread_ns=12291.666667 minor_faults=8 thread_ns=7.065250,9.449958,8.117208,5.042083
+MT size=40000 allocator=pool threads=4 rep=3 phase=measured mean_ns=7.433615 slowest_ns=9.543333 ready=4 start_spread_ns=1666.666667 minor_faults=8 thread_ns=7.226167,9.543333,7.983917,4.981042
+MT size=40000 allocator=pool threads=4 rep=4 phase=measured mean_ns=7.863979 slowest_ns=9.840542 ready=4 start_spread_ns=3416.666667 minor_faults=9 thread_ns=7.349250,9.840542,8.438500,5.827625
+MT size=40000 allocator=pool threads=4 rep=5 phase=measured mean_ns=9.489052 slowest_ns=11.906083 ready=4 start_spread_ns=23416.666667 minor_faults=8 thread_ns=11.492958,11.906083,8.337333,6.219833
+MT_SUMMARY size=40000 allocator=pool threads=4 median_mean_ns=7.433615 median_slowest_ns=9.543333 worst_mean_ns=9.489052 worst_slowest_ns=11.906083
+MT size=40000 allocator=pool threads=8 rep=0 phase=warmup mean_ns=13.421229 slowest_ns=16.510042 ready=8 start_spread_ns=10041.666667 minor_faults=16 thread_ns=11.561083,14.071000,14.730833,8.882833,14.197333,16.199583,16.510042,11.217125
+MT size=40000 allocator=pool threads=8 rep=1 phase=measured mean_ns=15.686719 slowest_ns=18.461917 ready=8 start_spread_ns=16250.000000 minor_faults=16 thread_ns=8.126500,14.337458,17.330958,15.382708,17.042625,18.461917,16.754333,18.057250
+MT size=40000 allocator=pool threads=8 rep=2 phase=measured mean_ns=14.375151 slowest_ns=16.982125 ready=8 start_spread_ns=20166.666667 minor_faults=16 thread_ns=12.540167,16.982125,15.957292,15.701958,15.392125,13.236292,9.166042,16.025208
+MT size=40000 allocator=pool threads=8 rep=3 phase=measured mean_ns=18.653490 slowest_ns=21.300042 ready=8 start_spread_ns=15458.333333 minor_faults=16 thread_ns=20.997000,20.994167,21.300042,20.047208,19.660083,12.973125,13.833792,19.422500
+MT size=40000 allocator=pool threads=8 rep=4 phase=measured mean_ns=15.223214 slowest_ns=17.441875 ready=8 start_spread_ns=14833.333333 minor_faults=16 thread_ns=12.722875,14.371500,14.934792,14.660208,17.441875,16.885125,16.256125,14.513208
+MT size=40000 allocator=pool threads=8 rep=5 phase=measured mean_ns=14.927958 slowest_ns=17.549625 ready=8 start_spread_ns=8250.000000 minor_faults=16 thread_ns=15.356375,16.385875,17.549625,14.318625,15.420125,16.524417,17.250292,6.618333
+MT_SUMMARY size=40000 allocator=pool threads=8 median_mean_ns=15.223214 median_slowest_ns=17.549625 worst_mean_ns=18.653490 worst_slowest_ns=21.300042

@@ -1,0 +1,566 @@
+MACHINE os=Darwin arch=arm64 logical_cpus=10 performance_cpus=4 efficiency_cpus=6
+CLOCK name=mach_absolute_time tick_ns=41.666666667 granularity_ns=41.666666667
+CONFIG synthetic trace, not a real workload; reps=5 warmup=1 pairs=200000 rounds=2 live=16384 live_bytes=82629072 seed=0x70ace123 threads=unpinned
+TOUCH volatile byte store per 64 bytes and final byte; setup outside timing; MT ns_pair=mean worker ns/pair, not throughput.
+RANGE 16,64,256,4096,40000 only; deliberate maximum, no fallback benchmark.
+TRACE class=16 peak=1885 percentile=100
+TRACE class=32 peak=1886 percentile=100
+TRACE class=64 peak=1757 percentile=100
+TRACE class=128 peak=1857 percentile=100
+TRACE class=256 peak=1742 percentile=100
+TRACE class=512 peak=1818 percentile=100
+TRACE class=1024 peak=1820 percentile=100
+TRACE class=4096 peak=1833 percentile=100
+TRACE class=40000 peak=1786 percentile=100
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=7.740000
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=6.176875
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=5.271250
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=6.782292
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=6.165417
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=5.248542
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=5.592500
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=7.139375
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=2 phase=measured ns_pair=5.248125
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=2 phase=measured ns_pair=5.692708
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=7.143750
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=5.917708
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=3 phase=measured ns_pair=6.533958
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=7.126875
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=5.943333
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=3 phase=measured ns_pair=5.271250
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=7.134167
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=5.555417
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=4 phase=measured ns_pair=5.270833
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=4 phase=measured ns_pair=6.514167
+CELL workload=pair size=16 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=5.507500
+CELL workload=pair size=16 threads=1 touch=0 allocator=wrapper rep=5 phase=measured ns_pair=5.248542
+CELL workload=pair size=16 threads=1 touch=0 allocator=pool rep=5 phase=measured ns_pair=5.966458
+CELL workload=pair size=16 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=7.272708
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=7.603958
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=5.337708
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=5.336250
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=4.590833
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=5.335625
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=5.336667
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=4.596458
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=7.615417
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=2 phase=measured ns_pair=5.273542
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=2 phase=measured ns_pair=4.516458
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=7.509583
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=5.271667
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=3 phase=measured ns_pair=4.506667
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=7.503750
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=5.271250
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=3 phase=measured ns_pair=5.271250
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=7.532500
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=5.271458
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=4 phase=measured ns_pair=5.271042
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=4 phase=measured ns_pair=4.538750
+CELL workload=pair size=16 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=5.271667
+CELL workload=pair size=16 threads=1 touch=1 allocator=wrapper rep=5 phase=measured ns_pair=5.271042
+CELL workload=pair size=16 threads=1 touch=1 allocator=pool rep=5 phase=measured ns_pair=4.545208
+CELL workload=pair size=16 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=7.525833
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=8.320833
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=7.538750
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=7.778125
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=5.938333
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=7.532708
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=7.827500
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=4.875208
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=7.809375
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=2 phase=measured ns_pair=7.812500
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=2 phase=measured ns_pair=5.900208
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=7.781875
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=7.560625
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=3 phase=measured ns_pair=5.687292
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=7.828333
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=7.556875
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=3 phase=measured ns_pair=7.749167
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=7.781250
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=7.551458
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=4 phase=measured ns_pair=7.737500
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=4 phase=measured ns_pair=6.572292
+CELL workload=pair size=64 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=7.548542
+CELL workload=pair size=64 threads=1 touch=0 allocator=wrapper rep=5 phase=measured ns_pair=7.812083
+CELL workload=pair size=64 threads=1 touch=0 allocator=pool rep=5 phase=measured ns_pair=5.607083
+CELL workload=pair size=64 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=7.747500
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=9.036250
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=7.797292
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=7.783958
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=4.537500
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=7.826250
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=7.795000
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=4.547708
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=8.119375
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=2 phase=measured ns_pair=7.782292
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=2 phase=measured ns_pair=4.538542
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=8.021042
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=7.835208
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=3 phase=measured ns_pair=4.570000
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=8.085208
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=7.802083
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=3 phase=measured ns_pair=7.781667
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=8.035000
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=7.839375
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=4 phase=measured ns_pair=7.786875
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=4 phase=measured ns_pair=4.542917
+CELL workload=pair size=64 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=7.809792
+CELL workload=pair size=64 threads=1 touch=1 allocator=wrapper rep=5 phase=measured ns_pair=7.787292
+CELL workload=pair size=64 threads=1 touch=1 allocator=pool rep=5 phase=measured ns_pair=4.505208
+CELL workload=pair size=64 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=8.058750
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=8.688750
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=10.560417
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=9.547500
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=6.608333
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=10.561458
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=9.619167
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=6.571667
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=8.053750
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=2 phase=measured ns_pair=10.834375
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=2 phase=measured ns_pair=6.568542
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=8.052917
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=9.287292
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=3 phase=measured ns_pair=3.552708
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=8.055000
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=10.548542
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=3 phase=measured ns_pair=10.307500
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=8.022917
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=10.682708
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=4 phase=measured ns_pair=10.176250
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=4 phase=measured ns_pair=5.344792
+CELL workload=pair size=256 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=10.466667
+CELL workload=pair size=256 threads=1 touch=0 allocator=wrapper rep=5 phase=measured ns_pair=10.902917
+CELL workload=pair size=256 threads=1 touch=0 allocator=pool rep=5 phase=measured ns_pair=6.543333
+CELL workload=pair size=256 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=8.096042
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=10.040000
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=11.546458
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=11.044167
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=4.804583
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=11.597292
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=11.082708
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=4.695208
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=10.040208
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=2 phase=measured ns_pair=12.355000
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=2 phase=measured ns_pair=4.803333
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=9.787917
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=10.341667
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=3 phase=measured ns_pair=4.810833
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=9.036042
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=12.219167
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=3 phase=measured ns_pair=11.840417
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=9.035833
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=11.590208
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=4 phase=measured ns_pair=11.044375
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=4 phase=measured ns_pair=4.631875
+CELL workload=pair size=256 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=11.610417
+CELL workload=pair size=256 threads=1 touch=1 allocator=wrapper rep=5 phase=measured ns_pair=11.060625
+CELL workload=pair size=256 threads=1 touch=1 allocator=pool rep=5 phase=measured ns_pair=4.831667
+CELL workload=pair size=256 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=9.057292
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=13.872708
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=16.983958
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=15.562292
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=6.611875
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=16.889583
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=15.323750
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=6.621458
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=13.848542
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=2 phase=measured ns_pair=15.611250
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=2 phase=measured ns_pair=6.597083
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=13.872708
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=15.142708
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=3 phase=measured ns_pair=6.609375
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=13.871667
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=15.383750
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=3 phase=measured ns_pair=15.121250
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=13.927708
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=15.311250
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=4 phase=measured ns_pair=15.577708
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=4 phase=measured ns_pair=6.703958
+CELL workload=pair size=4096 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=16.103333
+CELL workload=pair size=4096 threads=1 touch=0 allocator=wrapper rep=5 phase=measured ns_pair=15.581458
+CELL workload=pair size=4096 threads=1 touch=0 allocator=pool rep=5 phase=measured ns_pair=5.966875
+CELL workload=pair size=4096 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=13.887500
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=30.737917
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=32.845208
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=31.604583
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=20.756042
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=32.416458
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=32.906250
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=20.353542
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=30.457708
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=2 phase=measured ns_pair=29.809375
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=2 phase=measured ns_pair=19.932917
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=31.215625
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=31.421458
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=3 phase=measured ns_pair=19.722292
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=30.862708
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=32.712917
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=3 phase=measured ns_pair=31.250417
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=31.416458
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=32.177917
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=4 phase=measured ns_pair=31.159583
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=4 phase=measured ns_pair=19.362292
+CELL workload=pair size=4096 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=32.096250
+CELL workload=pair size=4096 threads=1 touch=1 allocator=wrapper rep=5 phase=measured ns_pair=31.140417
+CELL workload=pair size=4096 threads=1 touch=1 allocator=pool rep=5 phase=measured ns_pair=19.350833
+CELL workload=pair size=4096 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=30.592292
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=68.583333
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=16.868333
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=0 phase=warmup ns_pair=16.566458
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=0 phase=warmup ns_pair=5.946042
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=16.200208
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=1 phase=measured ns_pair=16.078542
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=1 phase=measured ns_pair=5.687708
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=67.510000
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=2 phase=measured ns_pair=15.863750
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=2 phase=measured ns_pair=6.441875
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=67.870625
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=16.588958
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=3 phase=measured ns_pair=6.575000
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=68.172292
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=16.361042
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=3 phase=measured ns_pair=16.890833
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=68.393125
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=15.875833
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=4 phase=measured ns_pair=16.090000
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=4 phase=measured ns_pair=6.686042
+CELL workload=pair size=40000 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=16.587500
+CELL workload=pair size=40000 threads=1 touch=0 allocator=wrapper rep=5 phase=measured ns_pair=16.087917
+CELL workload=pair size=40000 threads=1 touch=0 allocator=pool rep=5 phase=measured ns_pair=6.456875
+CELL workload=pair size=40000 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=67.797083
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=236.381458
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=185.049375
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=0 phase=warmup ns_pair=184.129375
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=0 phase=warmup ns_pair=168.993333
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=184.616458
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=1 phase=measured ns_pair=184.564167
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=1 phase=measured ns_pair=170.109583
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=236.518542
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=2 phase=measured ns_pair=184.061458
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=2 phase=measured ns_pair=170.575833
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=232.870000
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=184.640000
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=3 phase=measured ns_pair=170.650833
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=237.168333
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=185.123542
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=3 phase=measured ns_pair=185.474583
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=235.361250
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=183.111875
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=4 phase=measured ns_pair=182.607917
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=4 phase=measured ns_pair=171.018125
+CELL workload=pair size=40000 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=182.714583
+CELL workload=pair size=40000 threads=1 touch=1 allocator=wrapper rep=5 phase=measured ns_pair=182.189792
+CELL workload=pair size=40000 threads=1 touch=1 allocator=pool rep=5 phase=measured ns_pair=170.922500
+CELL workload=pair size=40000 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=236.278333
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=41.754405
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=20.753225
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=18.559774
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=40.751139
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=39.998372
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=18.034617
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=17.810822
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=39.899190
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=38.522085
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=20.060221
+CELL workload=mixed size=0 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=19.337972
+CELL workload=mixed size=0 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=38.599650
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=228.085836
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=235.090892
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=183.588664
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=175.477346
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=172.372182
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=180.985769
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=181.975047
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=172.130585
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=169.493357
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=180.110931
+CELL workload=mixed size=0 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=182.329814
+CELL workload=mixed size=0 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=171.662649
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=8.194167 slowest_ns=8.194167 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=7.606250 slowest_ns=7.606250 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=6.293958 slowest_ns=6.293958 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=8.400833 slowest_ns=8.400833 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=8.388750 slowest_ns=8.388750 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=6.546875 slowest_ns=6.546875 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=6.563125 slowest_ns=6.563125 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=8.364583 slowest_ns=8.364583 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=8.181875 slowest_ns=8.181875 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=6.547292 slowest_ns=6.547292 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=6.559167 slowest_ns=6.559167 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=8.467708 slowest_ns=8.467708 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=9.484792 slowest_ns=9.484792 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=6.860833 slowest_ns=6.860833 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=6.860208 slowest_ns=6.860208 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=8.694583 slowest_ns=8.694583 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=8.674792 slowest_ns=8.674792 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=6.797917 slowest_ns=6.797917 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=6.888542 slowest_ns=6.888542 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=8.682500 slowest_ns=8.682500 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=8.646250 slowest_ns=8.646250 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=6.813125 slowest_ns=6.813125 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=6.824167 slowest_ns=6.824167 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=8.612292 slowest_ns=8.612292 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=71.460417 slowest_ns=71.460417 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=13.352708 slowest_ns=13.352708 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=15.368125 slowest_ns=15.368125 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=68.058750 slowest_ns=68.058750 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=67.998333 slowest_ns=67.998333 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=14.102083 slowest_ns=14.102083 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=14.742083 slowest_ns=14.742083 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=67.915833 slowest_ns=67.915833 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=68.116875 slowest_ns=68.116875 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=13.391042 slowest_ns=13.391042 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=13.324792 slowest_ns=13.324792 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=68.268542 slowest_ns=68.268542 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=235.231667 slowest_ns=235.231667 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=180.160000 slowest_ns=180.160000 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=181.912708 slowest_ns=181.912708 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=234.999167 slowest_ns=234.999167 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=235.208333 slowest_ns=235.208333 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=181.657500 slowest_ns=181.657500 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=181.442500 slowest_ns=181.442500 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=236.601875 slowest_ns=236.601875 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=234.859375 slowest_ns=234.859375 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=182.387917 slowest_ns=182.387917 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=185.201042 slowest_ns=185.201042 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=40000 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=236.833125 slowest_ns=236.833125 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=42.260488 slowest_ns=42.260488 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=0 phase=warmup ns_pair=20.899455 slowest_ns=20.899455 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=1 phase=measured ns_pair=19.317627 slowest_ns=19.317627 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=1 phase=measured ns_pair=39.881388 slowest_ns=39.881388 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=2 phase=measured ns_pair=38.525899 slowest_ns=38.525899 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=2 phase=measured ns_pair=19.771576 slowest_ns=19.771576 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=3 phase=measured ns_pair=18.948873 slowest_ns=18.948873 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=3 phase=measured ns_pair=38.202922 slowest_ns=38.202922 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=4 phase=measured ns_pair=38.157145 slowest_ns=38.157145 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=4 phase=measured ns_pair=21.715800 slowest_ns=21.715800 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=mm rep=5 phase=measured ns_pair=19.358317 slowest_ns=19.358317 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=0 allocator=malloc rep=5 phase=measured ns_pair=42.516073 slowest_ns=42.516073 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=170.580546 slowest_ns=170.580546 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=0 phase=warmup ns_pair=180.112203 slowest_ns=180.112203 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=1 phase=measured ns_pair=179.796855 slowest_ns=179.796855 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=1 phase=measured ns_pair=169.634501 slowest_ns=169.634501 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=2 phase=measured ns_pair=167.538961 slowest_ns=167.538961 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=2 phase=measured ns_pair=179.935455 slowest_ns=179.935455 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=3 phase=measured ns_pair=180.526733 slowest_ns=180.526733 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=3 phase=measured ns_pair=167.870839 slowest_ns=167.870839 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=4 phase=measured ns_pair=174.774170 slowest_ns=174.774170 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=4 phase=measured ns_pair=179.079692 slowest_ns=179.079692 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=mm rep=5 phase=measured ns_pair=178.473155 slowest_ns=178.473155 ready=1 start_spread_ns=0.000000
+CELL workload=mixed-mt size=0 threads=1 touch=1 allocator=malloc rep=5 phase=measured ns_pair=168.000539 slowest_ns=168.000539 ready=1 start_spread_ns=0.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=8.916146 slowest_ns=9.089583 ready=2 start_spread_ns=1625.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=0 phase=warmup ns_pair=6.744687 slowest_ns=6.870417 ready=2 start_spread_ns=958.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=1 phase=measured ns_pair=9.603125 slowest_ns=10.951667 ready=2 start_spread_ns=458.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=1 phase=measured ns_pair=8.475000 slowest_ns=8.818542 ready=2 start_spread_ns=666.666667
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=2 phase=measured ns_pair=8.626562 slowest_ns=8.936667 ready=2 start_spread_ns=1083.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=2 phase=measured ns_pair=9.462500 slowest_ns=10.750208 ready=2 start_spread_ns=333.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=3 phase=measured ns_pair=10.036771 slowest_ns=10.996667 ready=2 start_spread_ns=1750.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=3 phase=measured ns_pair=8.387292 slowest_ns=8.748333 ready=2 start_spread_ns=1333.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=4 phase=measured ns_pair=8.599792 slowest_ns=8.968333 ready=2 start_spread_ns=750.000000
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=4 phase=measured ns_pair=10.143125 slowest_ns=11.160833 ready=2 start_spread_ns=83.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=mm rep=5 phase=measured ns_pair=9.470833 slowest_ns=10.747083 ready=2 start_spread_ns=958.333333
+CELL workload=pair-mt size=64 threads=2 touch=0 allocator=malloc rep=5 phase=measured ns_pair=8.468125 slowest_ns=8.818958 ready=2 start_spread_ns=791.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=9.115937 slowest_ns=9.192083 ready=2 start_spread_ns=416.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=0 phase=warmup ns_pair=10.177292 slowest_ns=11.248958 ready=2 start_spread_ns=875.000000
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=1 phase=measured ns_pair=10.144896 slowest_ns=11.220625 ready=2 start_spread_ns=125.000000
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=1 phase=measured ns_pair=9.268958 slowest_ns=9.880208 ready=2 start_spread_ns=1625.000000
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=2 phase=measured ns_pair=10.217187 slowest_ns=10.349583 ready=2 start_spread_ns=708.333333
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=2 phase=measured ns_pair=10.283750 slowest_ns=11.419583 ready=2 start_spread_ns=500.000000
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=3 phase=measured ns_pair=10.228437 slowest_ns=11.855417 ready=2 start_spread_ns=1000.000000
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=3 phase=measured ns_pair=8.804167 slowest_ns=9.220417 ready=2 start_spread_ns=1583.333333
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=4 phase=measured ns_pair=8.799687 slowest_ns=8.981667 ready=2 start_spread_ns=1541.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=4 phase=measured ns_pair=7.370104 slowest_ns=7.616458 ready=2 start_spread_ns=41.666667
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=mm rep=5 phase=measured ns_pair=10.044271 slowest_ns=10.972083 ready=2 start_spread_ns=458.333333
+CELL workload=pair-mt size=64 threads=2 touch=1 allocator=malloc rep=5 phase=measured ns_pair=8.896354 slowest_ns=9.316250 ready=2 start_spread_ns=83.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=994.326042 slowest_ns=994.433542 ready=2 start_spread_ns=458.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=0 phase=warmup ns_pair=17.983438 slowest_ns=18.690000 ready=2 start_spread_ns=10833.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=1 phase=measured ns_pair=17.351042 slowest_ns=17.907500 ready=2 start_spread_ns=1958.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=1 phase=measured ns_pair=1010.125000 slowest_ns=1012.766042 ready=2 start_spread_ns=3333.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=2 phase=measured ns_pair=951.976979 slowest_ns=959.383750 ready=2 start_spread_ns=3875.000000
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=2 phase=measured ns_pair=14.795313 slowest_ns=16.124375 ready=2 start_spread_ns=1541.666667
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=3 phase=measured ns_pair=15.496146 slowest_ns=16.251042 ready=2 start_spread_ns=1333.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=3 phase=measured ns_pair=898.690312 slowest_ns=910.951042 ready=2 start_spread_ns=833.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=4 phase=measured ns_pair=999.605625 slowest_ns=1002.237292 ready=2 start_spread_ns=958.333333
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=4 phase=measured ns_pair=14.609479 slowest_ns=16.007292 ready=2 start_spread_ns=416.666667
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=mm rep=5 phase=measured ns_pair=13.349479 slowest_ns=13.726458 ready=2 start_spread_ns=375.000000
+CELL workload=pair-mt size=40000 threads=2 touch=0 allocator=malloc rep=5 phase=measured ns_pair=1020.919583 slowest_ns=1021.401458 ready=2 start_spread_ns=1375.000000
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=634.940938 slowest_ns=635.130833 ready=2 start_spread_ns=1333.333333
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=0 phase=warmup ns_pair=185.551250 slowest_ns=185.606250 ready=2 start_spread_ns=541.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=1 phase=measured ns_pair=184.736250 slowest_ns=185.562083 ready=2 start_spread_ns=1666.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=1 phase=measured ns_pair=592.762396 slowest_ns=592.803542 ready=2 start_spread_ns=916.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=2 phase=measured ns_pair=608.798333 slowest_ns=609.116042 ready=2 start_spread_ns=208.333333
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=2 phase=measured ns_pair=184.631042 slowest_ns=185.591250 ready=2 start_spread_ns=1916.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=3 phase=measured ns_pair=184.936354 slowest_ns=185.577083 ready=2 start_spread_ns=1625.000000
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=3 phase=measured ns_pair=602.737917 slowest_ns=603.202917 ready=2 start_spread_ns=1166.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=4 phase=measured ns_pair=629.189479 slowest_ns=629.891667 ready=2 start_spread_ns=1166.666667
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=4 phase=measured ns_pair=185.522917 slowest_ns=186.715208 ready=2 start_spread_ns=875.000000
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=mm rep=5 phase=measured ns_pair=186.225208 slowest_ns=186.414167 ready=2 start_spread_ns=1500.000000
+CELL workload=pair-mt size=40000 threads=2 touch=1 allocator=malloc rep=5 phase=measured ns_pair=813.513021 slowest_ns=815.055208 ready=2 start_spread_ns=1583.333333
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=122.307460 slowest_ns=123.229980 ready=2 start_spread_ns=375.000000
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=0 phase=warmup ns_pair=22.651037 slowest_ns=23.057302 ready=2 start_spread_ns=1166.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=1 phase=measured ns_pair=23.059209 slowest_ns=24.809519 ready=2 start_spread_ns=625.000000
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=1 phase=measured ns_pair=110.127131 slowest_ns=111.540476 ready=2 start_spread_ns=791.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=2 phase=measured ns_pair=111.995697 slowest_ns=113.054911 ready=2 start_spread_ns=1041.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=2 phase=measured ns_pair=22.143682 slowest_ns=23.408254 ready=2 start_spread_ns=708.333333
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=3 phase=measured ns_pair=20.379384 slowest_ns=20.456950 ready=2 start_spread_ns=1833.333333
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=3 phase=measured ns_pair=110.824585 slowest_ns=112.073263 ready=2 start_spread_ns=1041.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=4 phase=measured ns_pair=117.068609 slowest_ns=117.776235 ready=2 start_spread_ns=2500.000000
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=4 phase=measured ns_pair=21.388372 slowest_ns=21.489461 ready=2 start_spread_ns=916.666667
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=mm rep=5 phase=measured ns_pair=21.985372 slowest_ns=22.103628 ready=2 start_spread_ns=1375.000000
+CELL workload=mixed-mt size=0 threads=2 touch=0 allocator=malloc rep=5 phase=measured ns_pair=110.625585 slowest_ns=111.896515 ready=2 start_spread_ns=458.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=319.088618 slowest_ns=319.226583 ready=2 start_spread_ns=20833.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=0 phase=warmup ns_pair=312.313080 slowest_ns=313.692729 ready=2 start_spread_ns=708.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=1 phase=measured ns_pair=262.690862 slowest_ns=263.341268 ready=2 start_spread_ns=958.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=1 phase=measured ns_pair=301.966985 slowest_ns=302.492778 ready=2 start_spread_ns=2125.000000
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=2 phase=measured ns_pair=304.569880 slowest_ns=305.016836 ready=2 start_spread_ns=583.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=2 phase=measured ns_pair=268.851598 slowest_ns=269.004822 ready=2 start_spread_ns=333.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=3 phase=measured ns_pair=265.574773 slowest_ns=265.872955 ready=2 start_spread_ns=125.000000
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=3 phase=measured ns_pair=302.457174 slowest_ns=302.541097 ready=2 start_spread_ns=750.000000
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=4 phase=measured ns_pair=305.212021 slowest_ns=305.694580 ready=2 start_spread_ns=875.000000
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=4 phase=measured ns_pair=268.529892 slowest_ns=268.727620 ready=2 start_spread_ns=833.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=mm rep=5 phase=measured ns_pair=266.482035 slowest_ns=266.614278 ready=2 start_spread_ns=83.333333
+CELL workload=mixed-mt size=0 threads=2 touch=1 allocator=malloc rep=5 phase=measured ns_pair=306.645075 slowest_ns=306.898753 ready=2 start_spread_ns=125.000000
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=10.877396 slowest_ns=13.520208 ready=4 start_spread_ns=5000.000000
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=0 phase=warmup ns_pair=8.262448 slowest_ns=10.663958 ready=4 start_spread_ns=6458.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=1 phase=measured ns_pair=8.133594 slowest_ns=10.392083 ready=4 start_spread_ns=30208.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=1 phase=measured ns_pair=10.484115 slowest_ns=13.461667 ready=4 start_spread_ns=7041.666667
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=2 phase=measured ns_pair=10.754740 slowest_ns=13.342917 ready=4 start_spread_ns=7500.000000
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=2 phase=measured ns_pair=8.168750 slowest_ns=10.801875 ready=4 start_spread_ns=12041.666667
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=3 phase=measured ns_pair=8.474792 slowest_ns=11.486875 ready=4 start_spread_ns=9708.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=3 phase=measured ns_pair=9.424427 slowest_ns=12.671250 ready=4 start_spread_ns=6208.333333
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=4 phase=measured ns_pair=9.608750 slowest_ns=13.114167 ready=4 start_spread_ns=1291.666667
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=4 phase=measured ns_pair=8.553437 slowest_ns=10.968125 ready=4 start_spread_ns=17500.000000
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=mm rep=5 phase=measured ns_pair=8.531615 slowest_ns=11.398750 ready=4 start_spread_ns=18000.000000
+CELL workload=pair-mt size=64 threads=4 touch=0 allocator=malloc rep=5 phase=measured ns_pair=10.273802 slowest_ns=12.680000 ready=4 start_spread_ns=5583.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=10.787396 slowest_ns=13.997708 ready=4 start_spread_ns=11541.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=0 phase=warmup ns_pair=8.375156 slowest_ns=10.747708 ready=4 start_spread_ns=6416.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=1 phase=measured ns_pair=8.557031 slowest_ns=11.333750 ready=4 start_spread_ns=12333.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=1 phase=measured ns_pair=10.761042 slowest_ns=14.152500 ready=4 start_spread_ns=5541.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=2 phase=measured ns_pair=10.861198 slowest_ns=13.948958 ready=4 start_spread_ns=11166.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=2 phase=measured ns_pair=8.906250 slowest_ns=11.213333 ready=4 start_spread_ns=3375.000000
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=3 phase=measured ns_pair=8.597656 slowest_ns=11.440417 ready=4 start_spread_ns=15083.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=3 phase=measured ns_pair=10.757396 slowest_ns=12.972500 ready=4 start_spread_ns=4708.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=4 phase=measured ns_pair=10.043385 slowest_ns=13.389583 ready=4 start_spread_ns=7833.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=4 phase=measured ns_pair=9.232969 slowest_ns=11.759583 ready=4 start_spread_ns=16041.666667
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=mm rep=5 phase=measured ns_pair=9.458385 slowest_ns=14.187708 ready=4 start_spread_ns=6333.333333
+CELL workload=pair-mt size=64 threads=4 touch=1 allocator=malloc rep=5 phase=measured ns_pair=11.263281 slowest_ns=14.249167 ready=4 start_spread_ns=10750.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=3108.280000 slowest_ns=3114.702500 ready=4 start_spread_ns=35208.333333
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=0 phase=warmup ns_pair=22.179219 slowest_ns=28.709583 ready=4 start_spread_ns=7250.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=1 phase=measured ns_pair=22.293437 slowest_ns=28.319167 ready=4 start_spread_ns=6166.666667
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=1 phase=measured ns_pair=3005.847604 slowest_ns=3047.778125 ready=4 start_spread_ns=18125.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=2 phase=measured ns_pair=3030.382760 slowest_ns=3053.495833 ready=4 start_spread_ns=2625.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=2 phase=measured ns_pair=22.038385 slowest_ns=27.366667 ready=4 start_spread_ns=4666.666667
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=3 phase=measured ns_pair=21.976458 slowest_ns=25.696042 ready=4 start_spread_ns=7500.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=3 phase=measured ns_pair=3051.609792 slowest_ns=3070.128542 ready=4 start_spread_ns=40958.333333
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=4 phase=measured ns_pair=3029.997031 slowest_ns=3051.366042 ready=4 start_spread_ns=10458.333333
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=4 phase=measured ns_pair=30.115625 slowest_ns=35.752500 ready=4 start_spread_ns=5000.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=mm rep=5 phase=measured ns_pair=25.682292 slowest_ns=33.151458 ready=4 start_spread_ns=4875.000000
+CELL workload=pair-mt size=40000 threads=4 touch=0 allocator=malloc rep=5 phase=measured ns_pair=2982.015521 slowest_ns=2997.238125 ready=4 start_spread_ns=9500.000000
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=3212.964531 slowest_ns=3220.527292 ready=4 start_spread_ns=6208.333333
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=0 phase=warmup ns_pair=240.958437 slowest_ns=264.588958 ready=4 start_spread_ns=11375.000000
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=1 phase=measured ns_pair=228.644792 slowest_ns=236.706458 ready=4 start_spread_ns=8666.666667
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=1 phase=measured ns_pair=3093.616823 slowest_ns=3101.462500 ready=4 start_spread_ns=2791.666667
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=2 phase=measured ns_pair=3059.018385 slowest_ns=3068.980833 ready=4 start_spread_ns=5875.000000
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=2 phase=measured ns_pair=204.453229 slowest_ns=213.274792 ready=4 start_spread_ns=11375.000000
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=3 phase=measured ns_pair=210.804531 slowest_ns=227.328958 ready=4 start_spread_ns=6583.333333
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=3 phase=measured ns_pair=3207.927448 slowest_ns=3222.939583 ready=4 start_spread_ns=4500.000000
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=4 phase=measured ns_pair=3138.971094 slowest_ns=3146.535208 ready=4 start_spread_ns=10083.333333
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=4 phase=measured ns_pair=211.653333 slowest_ns=212.862917 ready=4 start_spread_ns=5166.666667
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=mm rep=5 phase=measured ns_pair=207.320781 slowest_ns=212.799167 ready=4 start_spread_ns=6416.666667
+CELL workload=pair-mt size=40000 threads=4 touch=1 allocator=malloc rep=5 phase=measured ns_pair=3064.623490 slowest_ns=3089.452500 ready=4 start_spread_ns=5166.666667
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=376.271566 slowest_ns=387.223562 ready=4 start_spread_ns=12208.333333
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=0 phase=warmup ns_pair=29.669444 slowest_ns=39.919535 ready=4 start_spread_ns=4541.666667
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=1 phase=measured ns_pair=25.685946 slowest_ns=35.645803 ready=4 start_spread_ns=11041.666667
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=1 phase=measured ns_pair=367.333412 slowest_ns=376.365662 ready=4 start_spread_ns=6791.666667
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=2 phase=measured ns_pair=376.368205 slowest_ns=384.221395 ready=4 start_spread_ns=5958.333333
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=2 phase=measured ns_pair=30.845960 slowest_ns=41.290283 ready=4 start_spread_ns=10375.000000
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=3 phase=measured ns_pair=24.534225 slowest_ns=32.105764 ready=4 start_spread_ns=10791.666667
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=3 phase=measured ns_pair=371.083260 slowest_ns=380.499522 ready=4 start_spread_ns=6750.000000
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=4 phase=measured ns_pair=345.301310 slowest_ns=356.042226 ready=4 start_spread_ns=9333.333333
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=4 phase=measured ns_pair=28.623581 slowest_ns=37.957509 ready=4 start_spread_ns=6250.000000
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=mm rep=5 phase=measured ns_pair=24.996440 slowest_ns=33.041636 ready=4 start_spread_ns=1958.333333
+CELL workload=mixed-mt size=0 threads=4 touch=0 allocator=malloc rep=5 phase=measured ns_pair=381.220182 slowest_ns=391.785940 ready=4 start_spread_ns=2750.000000
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=568.206469 slowest_ns=599.262238 ready=4 start_spread_ns=7958.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=0 phase=warmup ns_pair=624.508540 slowest_ns=633.017222 ready=4 start_spread_ns=8458.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=1 phase=measured ns_pair=458.374659 slowest_ns=465.927124 ready=4 start_spread_ns=7625.000000
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=1 phase=measured ns_pair=557.444255 slowest_ns=575.089773 ready=4 start_spread_ns=10291.666667
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=2 phase=measured ns_pair=510.282199 slowest_ns=553.410848 ready=4 start_spread_ns=11958.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=2 phase=measured ns_pair=454.160055 slowest_ns=463.989258 ready=4 start_spread_ns=12250.000000
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=3 phase=measured ns_pair=456.496874 slowest_ns=465.941111 ready=4 start_spread_ns=6583.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=3 phase=measured ns_pair=598.147710 slowest_ns=606.212616 ready=4 start_spread_ns=4166.666667
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=4 phase=measured ns_pair=567.338943 slowest_ns=579.317729 ready=4 start_spread_ns=6333.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=4 phase=measured ns_pair=454.500516 slowest_ns=461.714427 ready=4 start_spread_ns=25958.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=mm rep=5 phase=measured ns_pair=453.096390 slowest_ns=461.129506 ready=4 start_spread_ns=16208.333333
+CELL workload=mixed-mt size=0 threads=4 touch=1 allocator=malloc rep=5 phase=measured ns_pair=577.117602 slowest_ns=588.019053 ready=4 start_spread_ns=3958.333333
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=13.013724 slowest_ns=18.861042 ready=8 start_spread_ns=7166.666667
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=0 phase=warmup ns_pair=14.106953 slowest_ns=18.041042 ready=8 start_spread_ns=9458.333333
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=1 phase=measured ns_pair=12.500312 slowest_ns=14.689167 ready=8 start_spread_ns=52333.333333
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=1 phase=measured ns_pair=12.219948 slowest_ns=16.613333 ready=8 start_spread_ns=10375.000000
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=2 phase=measured ns_pair=12.521979 slowest_ns=16.903958 ready=8 start_spread_ns=26708.333333
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=2 phase=measured ns_pair=18.995208 slowest_ns=24.557708 ready=8 start_spread_ns=10083.333333
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=3 phase=measured ns_pair=12.035234 slowest_ns=17.179375 ready=8 start_spread_ns=8375.000000
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=3 phase=measured ns_pair=14.015885 slowest_ns=21.290625 ready=8 start_spread_ns=11166.666667
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=4 phase=measured ns_pair=12.511719 slowest_ns=16.846875 ready=8 start_spread_ns=10083.333333
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=4 phase=measured ns_pair=12.148021 slowest_ns=16.679792 ready=8 start_spread_ns=20541.666667
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=mm rep=5 phase=measured ns_pair=14.829349 slowest_ns=18.185000 ready=8 start_spread_ns=15416.666667
+CELL workload=pair-mt size=64 threads=8 touch=0 allocator=malloc rep=5 phase=measured ns_pair=11.990443 slowest_ns=15.898333 ready=8 start_spread_ns=7000.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=14.316589 slowest_ns=20.428125 ready=8 start_spread_ns=5875.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=0 phase=warmup ns_pair=14.984557 slowest_ns=21.546042 ready=8 start_spread_ns=11375.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=1 phase=measured ns_pair=10.328854 slowest_ns=13.462708 ready=8 start_spread_ns=9958.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=1 phase=measured ns_pair=13.530938 slowest_ns=20.091042 ready=8 start_spread_ns=11083.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=2 phase=measured ns_pair=14.381380 slowest_ns=21.465000 ready=8 start_spread_ns=8250.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=2 phase=measured ns_pair=12.528672 slowest_ns=16.596458 ready=8 start_spread_ns=11875.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=3 phase=measured ns_pair=13.939792 slowest_ns=17.692500 ready=8 start_spread_ns=14291.666667
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=3 phase=measured ns_pair=14.461172 slowest_ns=20.859375 ready=8 start_spread_ns=15375.000000
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=4 phase=measured ns_pair=12.247214 slowest_ns=16.224792 ready=8 start_spread_ns=8416.666667
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=4 phase=measured ns_pair=12.329427 slowest_ns=16.778333 ready=8 start_spread_ns=13083.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=mm rep=5 phase=measured ns_pair=16.515677 slowest_ns=22.445625 ready=8 start_spread_ns=6458.333333
+CELL workload=pair-mt size=64 threads=8 touch=1 allocator=malloc rep=5 phase=measured ns_pair=12.981224 slowest_ns=18.033750 ready=8 start_spread_ns=10958.333333
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=7457.078464 slowest_ns=7584.836875 ready=8 start_spread_ns=11875.000000
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=0 phase=warmup ns_pair=28.077370 slowest_ns=35.776458 ready=8 start_spread_ns=39541.666667
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=1 phase=measured ns_pair=26.334557 slowest_ns=35.893333 ready=8 start_spread_ns=6500.000000
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=1 phase=measured ns_pair=7354.846797 slowest_ns=7464.766667 ready=8 start_spread_ns=9750.000000
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=2 phase=measured ns_pair=7566.327604 slowest_ns=7753.107083 ready=8 start_spread_ns=7208.333333
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=2 phase=measured ns_pair=30.875208 slowest_ns=42.751042 ready=8 start_spread_ns=8458.333333
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=3 phase=measured ns_pair=25.794635 slowest_ns=33.561250 ready=8 start_spread_ns=14541.666667
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=3 phase=measured ns_pair=7572.721510 slowest_ns=7712.348333 ready=8 start_spread_ns=31250.000000
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=4 phase=measured ns_pair=7639.265937 slowest_ns=7742.061875 ready=8 start_spread_ns=18458.333333
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=4 phase=measured ns_pair=25.493594 slowest_ns=33.694167 ready=8 start_spread_ns=13416.666667
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=mm rep=5 phase=measured ns_pair=27.584948 slowest_ns=39.749167 ready=8 start_spread_ns=8208.333333
+CELL workload=pair-mt size=40000 threads=8 touch=0 allocator=malloc rep=5 phase=measured ns_pair=7535.413151 slowest_ns=7606.998333 ready=8 start_spread_ns=14416.666667
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=7456.461953 slowest_ns=7596.702500 ready=8 start_spread_ns=11833.333333
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=0 phase=warmup ns_pair=228.249349 slowest_ns=247.339792 ready=8 start_spread_ns=10375.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=1 phase=measured ns_pair=236.414740 slowest_ns=262.735000 ready=8 start_spread_ns=11458.333333
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=1 phase=measured ns_pair=7445.908021 slowest_ns=7641.505833 ready=8 start_spread_ns=6958.333333
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=2 phase=measured ns_pair=7823.844089 slowest_ns=7858.232292 ready=8 start_spread_ns=11291.666667
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=2 phase=measured ns_pair=232.127604 slowest_ns=248.686458 ready=8 start_spread_ns=7958.333333
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=3 phase=measured ns_pair=233.875130 slowest_ns=263.447917 ready=8 start_spread_ns=15250.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=3 phase=measured ns_pair=7803.070521 slowest_ns=7883.990000 ready=8 start_spread_ns=15250.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=4 phase=measured ns_pair=7857.884245 slowest_ns=7885.096667 ready=8 start_spread_ns=4750.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=4 phase=measured ns_pair=239.371016 slowest_ns=258.978333 ready=8 start_spread_ns=14875.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=mm rep=5 phase=measured ns_pair=250.014193 slowest_ns=283.115625 ready=8 start_spread_ns=14500.000000
+CELL workload=pair-mt size=40000 threads=8 touch=1 allocator=malloc rep=5 phase=measured ns_pair=7749.015677 slowest_ns=7798.956875 ready=8 start_spread_ns=44666.666667
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=0 phase=warmup ns_pair=785.489082 slowest_ns=828.147888 ready=8 start_spread_ns=9125.000000
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=0 phase=warmup ns_pair=42.307854 slowest_ns=53.246816 ready=8 start_spread_ns=13750.000000
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=1 phase=measured ns_pair=43.292363 slowest_ns=57.313283 ready=8 start_spread_ns=13875.000000
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=1 phase=measured ns_pair=761.321863 slowest_ns=814.641317 ready=8 start_spread_ns=8208.333333
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=2 phase=measured ns_pair=823.865255 slowest_ns=863.953908 ready=8 start_spread_ns=8250.000000
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=2 phase=measured ns_pair=33.435027 slowest_ns=46.445211 ready=8 start_spread_ns=15083.333333
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=3 phase=measured ns_pair=33.277194 slowest_ns=46.443939 ready=8 start_spread_ns=8125.000000
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=3 phase=measured ns_pair=821.015994 slowest_ns=864.925385 ready=8 start_spread_ns=14083.333333
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=4 phase=measured ns_pair=829.931736 slowest_ns=876.888275 ready=8 start_spread_ns=10208.333333
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=4 phase=measured ns_pair=37.031651 slowest_ns=47.189077 ready=8 start_spread_ns=23416.666667
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=mm rep=5 phase=measured ns_pair=36.877473 slowest_ns=47.143300 ready=8 start_spread_ns=6791.666667
+CELL workload=mixed-mt size=0 threads=8 touch=0 allocator=malloc rep=5 phase=measured ns_pair=808.314482 slowest_ns=863.941193 ready=8 start_spread_ns=17625.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=0 phase=warmup ns_pair=989.598433 slowest_ns=1077.078501 ready=8 start_spread_ns=13875.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=0 phase=warmup ns_pair=1157.422702 slowest_ns=1191.506704 ready=8 start_spread_ns=56875.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=1 phase=measured ns_pair=834.628105 slowest_ns=903.151194 ready=8 start_spread_ns=14708.333333
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=1 phase=measured ns_pair=1115.828196 slowest_ns=1169.794718 ready=8 start_spread_ns=39625.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=2 phase=measured ns_pair=1062.337875 slowest_ns=1140.183767 ready=8 start_spread_ns=8083.333333
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=2 phase=measured ns_pair=853.957494 slowest_ns=897.875468 ready=8 start_spread_ns=16041.666667
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=3 phase=measured ns_pair=869.529565 slowest_ns=913.552602 ready=8 start_spread_ns=17375.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=3 phase=measured ns_pair=989.042441 slowest_ns=1072.928111 ready=8 start_spread_ns=10458.333333
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=4 phase=measured ns_pair=961.911043 slowest_ns=1052.740733 ready=8 start_spread_ns=17958.333333
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=4 phase=measured ns_pair=802.933216 slowest_ns=889.361064 ready=8 start_spread_ns=11750.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=mm rep=5 phase=measured ns_pair=823.461374 slowest_ns=887.437185 ready=8 start_spread_ns=6875.000000
+CELL workload=mixed-mt size=0 threads=8 touch=1 allocator=malloc rep=5 phase=measured ns_pair=1003.636519 slowest_ns=1072.457631 ready=8 start_spread_ns=13416.666667

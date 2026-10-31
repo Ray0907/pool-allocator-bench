@@ -1,0 +1,146 @@
+CONFIG mode=full reps=5 warmup=1 pairs=2000000 samples=1000000
+CLOCK name=mach_absolute_time tick_ns=41.666666667 granularity_ns=41.666666667
+MACHINE os=Darwin arch=arm64 logical_cpus=10 performance_cpus=4 efficiency_cpus=6
+No payload touch; pointer stored to a volatile sink; threads not pinned.
+Batch warmup rep=0 excluded; minor_faults=getrusage(RUSAGE_SELF) loop delta, excluding pool setup.
+Timer overhead is back-to-back reads in an empty loop; latency includes overhead, not subtracted.
+p50 below one tick is quantized, NOT a real zero-ns latency; <tick means below clock granularity.
+Raw TAIL fields are integer clock ticks; nearest-rank percentiles; summary=median of each percentile, worst max.
+Latency tails can be OS-noise dominated; max is not an allocator-only or real-time bound.
+OVERHEAD rep=1 samples=100000 mean_ns=4.253750 min_ticks=0 p50_ticks=0 p50_ns=<tick
+OVERHEAD rep=2 samples=100000 mean_ns=4.208750 min_ticks=0 p50_ticks=0 p50_ns=<tick
+OVERHEAD rep=3 samples=100000 mean_ns=4.265417 min_ticks=0 p50_ticks=0 p50_ns=<tick
+OVERHEAD rep=4 samples=100000 mean_ns=4.229583 min_ticks=0 p50_ticks=0 p50_ns=<tick
+OVERHEAD rep=5 samples=100000 mean_ns=4.248750 min_ticks=0 p50_ticks=0 p50_ns=<tick
+BATCH size=16 allocator=malloc rep=0 phase=warmup ns_pair=7.191896 minor_faults=3
+BATCH size=16 allocator=malloc rep=1 phase=measured ns_pair=7.005292 minor_faults=0
+BATCH size=16 allocator=malloc rep=2 phase=measured ns_pair=7.002979 minor_faults=0
+BATCH size=16 allocator=malloc rep=3 phase=measured ns_pair=6.994979 minor_faults=0
+BATCH size=16 allocator=malloc rep=4 phase=measured ns_pair=6.999333 minor_faults=0
+BATCH size=16 allocator=malloc rep=5 phase=measured ns_pair=7.006458 minor_faults=0
+BATCH_SUMMARY size=16 allocator=malloc median_ns=7.002979 worst_ns=7.006458
+BATCH size=16 allocator=pool rep=0 phase=warmup ns_pair=4.657646 minor_faults=0
+BATCH size=16 allocator=pool rep=1 phase=measured ns_pair=4.673000 minor_faults=0
+BATCH size=16 allocator=pool rep=2 phase=measured ns_pair=4.657292 minor_faults=0
+BATCH size=16 allocator=pool rep=3 phase=measured ns_pair=4.674292 minor_faults=0
+BATCH size=16 allocator=pool rep=4 phase=measured ns_pair=4.664167 minor_faults=0
+BATCH size=16 allocator=pool rep=5 phase=measured ns_pair=4.697104 minor_faults=0
+BATCH_SUMMARY size=16 allocator=pool median_ns=4.673000 worst_ns=4.697104
+BATCH size=256 allocator=malloc rep=0 phase=warmup ns_pair=8.330000 minor_faults=2
+BATCH size=256 allocator=malloc rep=1 phase=measured ns_pair=8.270708 minor_faults=0
+BATCH size=256 allocator=malloc rep=2 phase=measured ns_pair=7.819521 minor_faults=0
+BATCH size=256 allocator=malloc rep=3 phase=measured ns_pair=7.753729 minor_faults=0
+BATCH size=256 allocator=malloc rep=4 phase=measured ns_pair=7.769833 minor_faults=0
+BATCH size=256 allocator=malloc rep=5 phase=measured ns_pair=7.750521 minor_faults=0
+BATCH_SUMMARY size=256 allocator=malloc median_ns=7.769833 worst_ns=8.270708
+BATCH size=256 allocator=pool rep=0 phase=warmup ns_pair=4.679563 minor_faults=0
+BATCH size=256 allocator=pool rep=1 phase=measured ns_pair=4.677104 minor_faults=0
+BATCH size=256 allocator=pool rep=2 phase=measured ns_pair=4.676833 minor_faults=0
+BATCH size=256 allocator=pool rep=3 phase=measured ns_pair=4.686083 minor_faults=0
+BATCH size=256 allocator=pool rep=4 phase=measured ns_pair=4.682917 minor_faults=0
+BATCH size=256 allocator=pool rep=5 phase=measured ns_pair=4.679812 minor_faults=0
+BATCH_SUMMARY size=256 allocator=pool median_ns=4.679812 worst_ns=4.686083
+BATCH size=4096 allocator=malloc rep=0 phase=warmup ns_pair=13.636188 minor_faults=1
+BATCH size=4096 allocator=malloc rep=1 phase=measured ns_pair=13.638104 minor_faults=0
+BATCH size=4096 allocator=malloc rep=2 phase=measured ns_pair=13.659083 minor_faults=0
+BATCH size=4096 allocator=malloc rep=3 phase=measured ns_pair=13.643896 minor_faults=0
+BATCH size=4096 allocator=malloc rep=4 phase=measured ns_pair=13.699500 minor_faults=0
+BATCH size=4096 allocator=malloc rep=5 phase=measured ns_pair=13.653271 minor_faults=0
+BATCH_SUMMARY size=4096 allocator=malloc median_ns=13.653271 worst_ns=13.699500
+BATCH size=4096 allocator=pool rep=0 phase=warmup ns_pair=4.617542 minor_faults=0
+BATCH size=4096 allocator=pool rep=1 phase=measured ns_pair=4.637021 minor_faults=0
+BATCH size=4096 allocator=pool rep=2 phase=measured ns_pair=4.628875 minor_faults=0
+BATCH size=4096 allocator=pool rep=3 phase=measured ns_pair=4.625521 minor_faults=0
+BATCH size=4096 allocator=pool rep=4 phase=measured ns_pair=4.618417 minor_faults=0
+BATCH size=4096 allocator=pool rep=5 phase=measured ns_pair=4.627667 minor_faults=0
+BATCH_SUMMARY size=4096 allocator=pool median_ns=4.627667 worst_ns=4.637021
+BATCH size=40000 allocator=malloc rep=0 phase=warmup ns_pair=67.328521 minor_faults=1
+BATCH size=40000 allocator=malloc rep=1 phase=measured ns_pair=67.342562 minor_faults=0
+BATCH size=40000 allocator=malloc rep=2 phase=measured ns_pair=67.240667 minor_faults=0
+BATCH size=40000 allocator=malloc rep=3 phase=measured ns_pair=67.217938 minor_faults=0
+BATCH size=40000 allocator=malloc rep=4 phase=measured ns_pair=67.287042 minor_faults=0
+BATCH size=40000 allocator=malloc rep=5 phase=measured ns_pair=67.245500 minor_faults=0
+BATCH_SUMMARY size=40000 allocator=malloc median_ns=67.245500 worst_ns=67.342562
+BATCH size=40000 allocator=pool rep=0 phase=warmup ns_pair=4.625687 minor_faults=0
+BATCH size=40000 allocator=pool rep=1 phase=measured ns_pair=4.669875 minor_faults=0
+BATCH size=40000 allocator=pool rep=2 phase=measured ns_pair=4.681354 minor_faults=0
+BATCH size=40000 allocator=pool rep=3 phase=measured ns_pair=4.685500 minor_faults=0
+BATCH size=40000 allocator=pool rep=4 phase=measured ns_pair=4.689333 minor_faults=0
+BATCH size=40000 allocator=pool rep=5 phase=measured ns_pair=4.675313 minor_faults=0
+BATCH_SUMMARY size=40000 allocator=pool median_ns=4.681354 worst_ns=4.689333
+BATCH size=262144 allocator=malloc rep=0 phase=warmup ns_pair=68.598708 minor_faults=0
+BATCH size=262144 allocator=malloc rep=1 phase=measured ns_pair=68.537229 minor_faults=0
+BATCH size=262144 allocator=malloc rep=2 phase=measured ns_pair=68.621562 minor_faults=0
+BATCH size=262144 allocator=malloc rep=3 phase=measured ns_pair=68.666104 minor_faults=0
+BATCH size=262144 allocator=malloc rep=4 phase=measured ns_pair=68.854292 minor_faults=0
+BATCH size=262144 allocator=malloc rep=5 phase=measured ns_pair=68.726750 minor_faults=0
+BATCH_SUMMARY size=262144 allocator=malloc median_ns=68.666104 worst_ns=68.854292
+BATCH size=262144 allocator=pool rep=0 phase=warmup ns_pair=4.709771 minor_faults=0
+BATCH size=262144 allocator=pool rep=1 phase=measured ns_pair=4.685167 minor_faults=0
+BATCH size=262144 allocator=pool rep=2 phase=measured ns_pair=4.713604 minor_faults=0
+BATCH size=262144 allocator=pool rep=3 phase=measured ns_pair=4.710521 minor_faults=0
+BATCH size=262144 allocator=pool rep=4 phase=measured ns_pair=4.722354 minor_faults=0
+BATCH size=262144 allocator=pool rep=5 phase=measured ns_pair=4.715083 minor_faults=0
+BATCH_SUMMARY size=262144 allocator=pool median_ns=4.713604 worst_ns=4.722354
+BATCH size=1048576 allocator=malloc rep=0 phase=warmup ns_pair=68.763396 minor_faults=0
+BATCH size=1048576 allocator=malloc rep=1 phase=measured ns_pair=68.704167 minor_faults=0
+BATCH size=1048576 allocator=malloc rep=2 phase=measured ns_pair=68.662479 minor_faults=0
+BATCH size=1048576 allocator=malloc rep=3 phase=measured ns_pair=68.810542 minor_faults=0
+BATCH size=1048576 allocator=malloc rep=4 phase=measured ns_pair=68.814292 minor_faults=0
+BATCH size=1048576 allocator=malloc rep=5 phase=measured ns_pair=68.752271 minor_faults=0
+BATCH_SUMMARY size=1048576 allocator=malloc median_ns=68.752271 worst_ns=68.814292
+BATCH size=1048576 allocator=pool rep=0 phase=warmup ns_pair=4.692521 minor_faults=0
+BATCH size=1048576 allocator=pool rep=1 phase=measured ns_pair=4.695375 minor_faults=0
+BATCH size=1048576 allocator=pool rep=2 phase=measured ns_pair=4.710521 minor_faults=0
+BATCH size=1048576 allocator=pool rep=3 phase=measured ns_pair=4.715583 minor_faults=0
+BATCH size=1048576 allocator=pool rep=4 phase=measured ns_pair=4.688146 minor_faults=0
+BATCH size=1048576 allocator=pool rep=5 phase=measured ns_pair=4.711437 minor_faults=0
+BATCH_SUMMARY size=1048576 allocator=pool median_ns=4.710521 worst_ns=4.715583
+TAIL size=16 allocator=malloc rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=34
+TAIL size=16 allocator=malloc rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=35
+TAIL size=16 allocator=malloc rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=32
+TAIL size=16 allocator=malloc rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=23
+TAIL size=16 allocator=malloc rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=31
+TAIL_SUMMARY size=16 allocator=malloc p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=83.333333 worst_max_ns=1458.333333
+TAIL size=16 allocator=pool rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=22
+TAIL size=16 allocator=pool rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=6
+TAIL size=16 allocator=pool rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=3
+TAIL size=16 allocator=pool rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=35
+TAIL size=16 allocator=pool rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=30
+TAIL_SUMMARY size=16 allocator=pool p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=83.333333 worst_max_ns=1458.333333
+TAIL size=256 allocator=malloc rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=15
+TAIL size=256 allocator=malloc rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=18
+TAIL size=256 allocator=malloc rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=4
+TAIL size=256 allocator=malloc rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=4
+TAIL size=256 allocator=malloc rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=4
+TAIL_SUMMARY size=256 allocator=malloc p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=83.333333 worst_max_ns=750.000000
+TAIL size=256 allocator=pool rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=3
+TAIL size=256 allocator=pool rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=3
+TAIL size=256 allocator=pool rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=27
+TAIL size=256 allocator=pool rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=19
+TAIL size=256 allocator=pool rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=16
+TAIL_SUMMARY size=256 allocator=pool p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=41.666667 worst_max_ns=1125.000000
+TAIL size=4096 allocator=malloc rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=3 max_ticks=29
+TAIL size=4096 allocator=malloc rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=3 max_ticks=25
+TAIL size=4096 allocator=malloc rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=4 max_ticks=22
+TAIL size=4096 allocator=malloc rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=2 p99_99_ticks=4 max_ticks=49
+TAIL size=4096 allocator=malloc rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=2 p99_99_ticks=4 max_ticks=55
+TAIL_SUMMARY size=4096 allocator=malloc p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=166.666667 worst_max_ns=2291.666667
+TAIL size=4096 allocator=pool rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=38
+TAIL size=4096 allocator=pool rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=111
+TAIL size=4096 allocator=pool rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=84
+TAIL size=4096 allocator=pool rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=3
+TAIL size=4096 allocator=pool rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=4
+TAIL_SUMMARY size=4096 allocator=pool p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=41.666667 worst_max_ns=4625.000000
+TAIL size=40000 allocator=malloc rep=1 minor_faults=1 p50_ticks=2 p99_ticks=2 p99_9_ticks=4 p99_99_ticks=5 max_ticks=381
+TAIL size=40000 allocator=malloc rep=2 minor_faults=0 p50_ticks=2 p99_ticks=2 p99_9_ticks=4 p99_99_ticks=5 max_ticks=271
+TAIL size=40000 allocator=malloc rep=3 minor_faults=0 p50_ticks=2 p99_ticks=2 p99_9_ticks=4 p99_99_ticks=6 max_ticks=271
+TAIL size=40000 allocator=malloc rep=4 minor_faults=0 p50_ticks=2 p99_ticks=2 p99_9_ticks=4 p99_99_ticks=6 max_ticks=161
+TAIL size=40000 allocator=malloc rep=5 minor_faults=0 p50_ticks=2 p99_ticks=2 p99_9_ticks=4 p99_99_ticks=11 max_ticks=248
+TAIL_SUMMARY size=40000 allocator=malloc p50_ns=83.333333 p99_ns=83.333333 p99_9_ns=166.666667 p99_99_ns=250.000000 worst_max_ns=15875.000000
+TAIL size=40000 allocator=pool rep=1 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=3
+TAIL size=40000 allocator=pool rep=2 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=192
+TAIL size=40000 allocator=pool rep=3 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=165
+TAIL size=40000 allocator=pool rep=4 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=2 max_ticks=19
+TAIL size=40000 allocator=pool rep=5 minor_faults=0 p50_ticks=0 p99_ticks=1 p99_9_ticks=1 p99_99_ticks=1 max_ticks=79
+TAIL_SUMMARY size=40000 allocator=pool p50_ns=<tick p99_ns=41.666667 p99_9_ns=41.666667 p99_99_ns=83.333333 worst_max_ns=8000.000000

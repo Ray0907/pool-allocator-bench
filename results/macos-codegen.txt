@@ -1,0 +1,42 @@
+Optimized (-O2, no LTO) assembly call checks, isolated timed-loop functions:
+slow_check/slow_pairs: bl	_malloc
+slow_check/slow_pairs: bl	_free
+slow_check/slow_pairs: bl	_pool_alloc
+slow_check/slow_pairs: bl	_pool_free
+slow_check.o (nm -u): _malloc
+slow_check.o (nm -u): _free
+slow_check (disassembly): 0000000100000654	bl	0x100001c5c ; symbol stub for: _malloc
+slow_check (disassembly): 0000000100000734	bl	0x100001c5c ; symbol stub for: _malloc
+slow_check (disassembly): 00000001000011b8	bl	0x100001c5c ; symbol stub for: _malloc
+slow_check (disassembly): 000000010000159c	bl	0x100001c5c ; symbol stub for: _malloc
+slow_check (disassembly): 00000001000015ac	bl	0x100001c5c ; symbol stub for: _malloc
+slow_check (disassembly): 00000001000015bc	bl	0x100001c5c ; symbol stub for: _malloc
+slow_check (disassembly): 0000000100000660	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 0000000100000bd0	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 00000001000011c4	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 00000001000015f0	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 00000001000015f8	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 0000000100001600	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 0000000100001608	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 000000010000181c	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 0000000100001824	bl	0x100001c2c ; symbol stub for: _free
+slow_check (disassembly): 000000010000182c	bl	0x100001c2c ; symbol stub for: _free
+mt_check/mt_worker: bl	_malloc
+mt_check/mt_worker: bl	_free
+mt_check/mt_worker: bl	_pool_alloc
+mt_check/mt_worker: bl	_pool_free
+mt_check.o (nm -u): _malloc
+mt_check.o (nm -u): _free
+mt_check (disassembly): 0000000100000640	bl	0x100001a48 ; symbol stub for: _malloc
+mt_check (disassembly): 0000000100001278	bl	0x100001a48 ; symbol stub for: _malloc
+mt_check (disassembly): 0000000100001288	bl	0x100001a48 ; symbol stub for: _malloc
+mt_check (disassembly): 0000000100001298	bl	0x100001a48 ; symbol stub for: _malloc
+mt_check (disassembly): 000000010000064c	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 00000001000012cc	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 00000001000012d4	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 00000001000012dc	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 00000001000012e4	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 00000001000014f8	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 0000000100001500	bl	0x100001a18 ; symbol stub for: _free
+mt_check (disassembly): 0000000100001508	bl	0x100001a18 ; symbol stub for: _free
+PASS: malloc/free calls survive optimization in both timed loops.
